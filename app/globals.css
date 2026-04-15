@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@theme inline {
+  --color-primary: #0f172a;
+  --color-secondary: #22c55e;
+  --color-danger: #ef4444;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: #ffffff;
+  color: #171717;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
