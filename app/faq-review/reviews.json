@@ -1,0 +1,30 @@
+[
+  {
+    "name": "James Wilson",
+    "role": "Procurement Manager, Global Fragrances",
+    "rating": 5,
+    "comment": "The quality of the lemongrass oil from Kodai Global Exports is exceptional. The citral content is consistently high, and the packaging is perfect for international shipping.",
+    "avatar": "JW"
+  },
+  {
+    "name": "Maria Garcia",
+    "role": "CEO, Natural Wellness Co.",
+    "rating": 5,
+    "comment": "Reliable supplier and great communication. We've been sourcing our essential oils from them for over two years now, and they never disappoint.",
+    "avatar": "MG"
+  },
+  {
+    "name": "Arjun Mehta",
+    "role": "Director, EverGreen Organics",
+    "rating": 4,
+    "comment": "Good quality product and timely delivery. The team is professional and handles bulk orders very efficiently.",
+    "avatar": "AM"
+  },
+  {
+    "name": "Sophie Chen",
+    "role": "Product Developer, Glow Cosmetics",
+    "rating": 5,
+    "comment": "We use their lemongrass oil in our premium skincare line. The purity is unmatched, and it blends beautifully with our other ingredients.",
+    "avatar": "SC"
+  }
+]

@@ -1,3 +1,2 @@
-export default function Home() {
-  return <p className="text-danger">Hello</p>;
-}
+export { metadata } from './home/page';
+export { default } from './home/page';

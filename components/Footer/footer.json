@@ -1,0 +1,41 @@
+{
+  "branding": {
+    "name": "Kodai Global Exports",
+    "description": "Premium Essential Oils and Natural Extracts from the heart of the hills. Committed to purity, sustainability, and international quality standards."
+  },
+  "sections": [
+    {
+      "title": "Quick Links",
+      "links": [
+        { "label": "Home", "href": "/" },
+        { "label": "Products", "href": "/products" },
+        { "label": "About Us", "href": "/about" },
+        { "label": "FAQ & Reviews", "href": "/faq-review" },
+        { "label": "Contact", "href": "/contact" }
+      ]
+    },
+    {
+      "title": "Products",
+      "links": [
+        { "label": "Lemongrass Oil", "href": "/products" },
+        { "label": "Natural Extracts", "href": "/products" },
+        { "label": "Essential Oils", "href": "/products" }
+      ]
+    },
+    {
+      "title": "Contact Us",
+      "info": {
+        "address": "Kodai Global Exports \nPeriyakulam, Theni District-625601, Tamilnadu, India.",
+        "email": "Kodaiglobalexports@gmail.com",
+        "phone": "+91 9677447233"
+      }
+    }
+  ],
+  "socials": [
+    { "platform": "Facebook", "href": "https://www.facebook.com/profile.php?id=61587369705591", "icon": "Facebook" },
+    { "platform": "Instagram", "href": "https://www.instagram.com/kodaiexports/", "icon": "Instagram" },
+    { "platform": "Linkedin", "href": "https://www.linkedin.com/in/babuji-sowrirajan-7b95883ab/", "icon": "Linkedin" },
+    { "platform": "Whatsapp", "href": "https://wa.me/919677447233?text=Hi%20I%20am%20interested%20in%20your%20products", "icon": "Whatsapp" }
+  ],
+  "copyright": "Copyright © 2026 Kodai Global Exports"
+}

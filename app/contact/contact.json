@@ -1,0 +1,80 @@
+{
+  "hero": {
+    "badge": "Get in Touch",
+    "title": "Let's Connect and Grow Together",
+    "subtitle": "Have questions about our premium essential oils or export processes? Our team is here to help you scale your business."
+  },
+  "form": {
+    "title": "Send us a Message",
+    "description": "Fill out the form below and we'll get back to you within 24 hours.",
+    "buttonText": "Send Message",
+    "fields": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "John Doe",
+        "error": {
+          "required": "Full name is required."
+        }
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "john@example.com",
+        "error": {
+          "required": "Email address is required.",
+          "invalid": "Please provide a valid email format."
+        }
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "How can we help?",
+        "error": {
+          "required": "Subject is required."
+        }
+      },
+      "message": {
+        "label": "Your Message",
+        "placeholder": "Tell us more about your requirements...",
+        "error": {
+          "required": "Message is required."
+        }
+      },
+      "robot": {
+        "label": "I confirm that I am not a robot",
+        "error": {
+          "required": "Please confirm you are not a robot."
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Contact Information",
+    "items": [
+      {
+        "type": "phone",
+        "label": "Phone Number",
+        "value": "+91 9677447233",
+        "icon": "Phone"
+      },
+      {
+        "type": "email",
+        "label": "Email Address",
+        "value": "Kodaiglobalexports@gmail.com",
+        "icon": "Mail"
+      },
+      {
+        "type": "address",
+        "label": "Office Address",
+        "value": "Kodai Global Exports \nPeriyakulam, Theni District-625601, Tamilnadu, India.",
+        "icon": "MapPin"
+      }
+    ]
+  },
+  "extra": {
+    "badge": "Global Export Partners",
+    "description": "Join our network of 50+ international distributors and experience the pure essence of Kodaikanal."
+  },
+  "status": {
+    "submitting": "Submitting...",
+    "success": "Sent Successfully"
+  }
+}

@@ -1,0 +1,324 @@
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { FormInput } from '@/components/shared/FormInput';
+import { FormTextarea } from '@/components/shared/FormTextarea';
+import { useForm, useWatch } from 'react-hook-form';
+import contactContent from './contact.json';
+import { Label } from '@/components/ui/label';
+
+type FormValues = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  robot: boolean;
+};
+
+const iconMap: Record<string, React.ElementType> = {
+  Mail,
+  Phone,
+  MapPin,
+};
+
+export default function ContactPage() {
+  const [formStatus, setFormStatus] = React.useState<'idle' | 'submitting' | 'success'>('idle');
+  const address =
+    contactContent.info.items.find((item) => item.type === 'address')?.value ??
+    'Kodai Global Exports, Periyakulam, Theni District-625601, Tamilnadu, India.';
+  const mapQuery = encodeURIComponent(address.replace(/\n/g, ', '));
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    clearErrors,
+    formState: { errors }
+  } = useForm<FormValues>({
+    defaultValues: { 
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      robot: false 
+    }
+  });
+
+  const isVerified = useWatch({
+    control,
+    name: 'robot',
+  });
+
+  const onSubmit = () => {
+    setFormStatus('submitting');
+    // Simulate API call
+    setTimeout(() => {
+      setFormStatus('success');
+      setTimeout(() => {
+        setFormStatus('idle');
+        reset({ name: '', email: '', subject: '', message: '', robot: false });
+        clearErrors();
+      }, 3000);
+    }, 1500);
+  };
+
+
+  return (
+    <main className="pb-24">
+      <section className="relative isolate min-h-[calc(100vh-var(--kodai-header-height))] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/mission-vision.jpg"
+            alt="Contact Us Banner"
+            fill
+            className="object-cover object-center brightness-[0.42]"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-kodai-dark/90 via-kodai-dark/78 to-kodai-dark/45" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_26%)]" />
+
+        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-var(--kodai-header-height))] max-w-[85rem] flex-col justify-center px-4 py-16 sm:px-6 md:px-10 md:py-20">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-kodai-green uppercase backdrop-blur-md">
+              {contactContent.hero.badge}
+            </span>
+            <h1 className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-7xl">
+              {contactContent.hero.title}
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
+              {contactContent.hero.subtitle}
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            {[
+              'Direct export support',
+              '24 hour response window',
+              'Premium product inquiries',
+            ].map((item, index) => (
+              <div
+                key={item}
+                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${
+                  index === 2
+                    ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
+                    : 'border-white/15 bg-white/8 text-white/78'
+                }`}
+              >
+                <span className={`h-1.5 w-1.5 rounded-full ${index === 2 ? 'bg-kodai-green' : 'bg-white/55'}`} />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="mx-auto mt-12 max-w-[85rem] px-4 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="space-y-8">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-kodai-green">
+                {contactContent.info.title}
+              </span>
+              <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
+                Reach us directly
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {contactContent.info.items.map((item, index) => {
+                const IconComponent = iconMap[item.icon] || Mail;
+                return (
+                  <div
+                    key={index}
+                    className="group rounded-[1.75rem] border border-white/70 bg-white/80 p-5 shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-kodai-green/20 hover:shadow-[0_18px_50px_rgba(45,122,79,0.08)]"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 flex-none items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green transition-all duration-300 group-hover:bg-kodai-green group-hover:text-white">
+                        <IconComponent size={22} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-bold uppercase tracking-[0.24em] text-gray-400">
+                          {item.label}
+                        </p>
+                        <p className="mt-2 whitespace-pre-line text-base font-medium leading-7 text-kodai-dark">
+                          {item.value}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="relative overflow-hidden rounded-[2rem] bg-kodai-dark p-8 text-white shadow-[0_20px_60px_rgba(26,31,46,0.14)]">
+              <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-kodai-green/20 blur-3xl" />
+              <div className="relative z-10">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-kodai-green">
+                  {contactContent.extra.badge}
+                </p>
+                <p className="mt-4 text-base leading-8 text-white/75">
+                  {contactContent.extra.description}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="rounded-[2.5rem] border border-white/70 bg-white/85 p-6 shadow-[0_24px_80px_rgba(26,31,46,0.08)] backdrop-blur-xl sm:p-8 md:p-10">
+              <div className="mb-8">
+                <h2 className="font-playfair text-3xl font-semibold text-kodai-dark">
+                  {contactContent.form.title}
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-gray-500 sm:text-base">
+                  {contactContent.form.description}
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormInput
+                    label={contactContent.form.fields.name.label}
+                    placeholder={contactContent.form.fields.name.placeholder}
+                    required
+                    registration={register('name', { required: contactContent.form.fields.name.error.required })}
+                    error={errors.name?.message as string}
+                  />
+
+                  <FormInput
+                    type="email"
+                    label={contactContent.form.fields.email.label}
+                    placeholder={contactContent.form.fields.email.placeholder}
+                    required
+                    registration={register('email', {
+                      required: contactContent.form.fields.email.error.required,
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: contactContent.form.fields.email.error.invalid
+                      }
+                    })}
+                    error={errors.email?.message as string}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 gap-6">
+                  <FormInput
+                    label={contactContent.form.fields.subject.label}
+                    placeholder={contactContent.form.fields.subject.placeholder}
+                    required
+                    registration={register('subject', { required: contactContent.form.fields.subject.error.required })}
+                    error={errors.subject?.message as string}
+                  />
+
+                  <FormTextarea
+                    rows={5}
+                    label={contactContent.form.fields.message.label}
+                    placeholder={contactContent.form.fields.message.placeholder}
+                    required
+                    registration={register('message', { required: contactContent.form.fields.message.error.required })}
+                    error={errors.message?.message as string}
+                  />
+                </div>
+
+                <div className="rounded-2xl border border-dashed border-kodai-green/15 bg-kodai-green/5 px-4 py-4">
+                  <div className="flex items-center space-x-2">
+                    <input 
+                      type="checkbox" 
+                      className="hidden" 
+                      id="robot-hidden"
+                      {...register('robot', { required: contactContent.form.fields.robot.error.required })} 
+                    />
+                    <Checkbox
+                      id="robot"
+                      checked={isVerified}
+                      onCheckedChange={(checked) => {
+                        setValue('robot', checked === true);
+                        if (checked === true) clearErrors('robot');
+                      }}
+                      className={`w-5 h-5 rounded data-[state=checked]:bg-kodai-green data-[state=checked]:border-kodai-green ${errors.robot ? 'border-red-500 border-2' : ''}`}
+                    />
+                    <Label
+                      htmlFor="robot"
+                      className="text-sm font-medium leading-none cursor-pointer select-none"
+                    >
+                      {contactContent.form.fields.robot.label}
+                    </Label>
+                  </div>
+                  {errors.robot && <p className="mt-2 text-sm font-medium text-red-500 animate-fade-in">{errors.robot.message as string}</p>}
+                </div>
+
+                <Button
+                  disabled={formStatus === 'submitting' || formStatus === 'success'}
+                  className={`w-full rounded-2xl py-7 text-lg font-bold transition-all duration-300 overflow-hidden ${
+                    formStatus === 'success'
+                      ? 'border-none bg-emerald-500 hover:bg-emerald-600'
+                      : 'border-none bg-kodai-green hover:bg-kodai-green-dark'
+                  } ${formStatus === 'submitting' ? 'opacity-80' : ''}`}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    {formStatus === 'idle' && (
+                      <>
+                        {contactContent.form.buttonText}
+                        <Send size={20} />
+                      </>
+                    )}
+                    {formStatus === 'submitting' && (
+                      <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    )}
+                    {formStatus === 'success' && (
+                      <>
+                        {contactContent.status.success}
+                        <CheckCircle2 size={20} />
+                      </>
+                    )}
+                  </div>
+                </Button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <section className="mt-14 overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/85 shadow-[0_24px_80px_rgba(26,31,46,0.08)] backdrop-blur-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.42fr_1fr]">
+            <div className="bg-kodai-dark p-8 text-white sm:p-10">
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-kodai-green">
+                Visit Us
+              </p>
+              <h3 className="mt-3 font-playfair text-3xl font-semibold">
+                Find our location
+              </h3>
+              <p className="mt-4 whitespace-pre-line text-sm leading-7 text-white/75 sm:text-base">
+                {address}
+              </p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex rounded-2xl bg-kodai-green px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-kodai-green-dark"
+              >
+                Open in Maps
+              </a>
+            </div>
+
+            <div className="relative min-h-[360px]">
+              <iframe
+                title="Kodai Global Exports location map"
+                src={mapEmbedUrl}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
+}

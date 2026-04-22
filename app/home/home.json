@@ -1,0 +1,77 @@
+{
+  "hero": {
+    "badge": "Structured Export Excellence",
+    "title": "Premium {Lemongrass Oil & Eucalyptus Oil} for Global Markets",
+    "subtitle": "Professionally managed export operations delivering high-quality Lemongrass Oil and Eucalyptus Oil with strong compliance, documentation, and dependable shipment execution.",
+    "imageSrc": "/images/about-hero.jpg",
+    "imageAlt": "Premium cultivation landscape"
+  },
+  "intro": {
+    "tagline": "Who We Are",
+    "title": "A professionally managed export company with a {quality-first} foundation",
+    "paragraphs": [
+      "Kodai Global Exports is a professionally managed essential oil export company focused on high-quality Lemongrass Oil and Eucalyptus Oil for both Indian and international markets. We have built a strong foundation based on quality excellence, regulatory compliance, proper documentation, structured production, and well-organized processes to deliver reliable and consistent products to global buyers.",
+      "Our oils are made from carefully selected raw materials sourced from well-known premium cultivation regions. They are processed under proper and controlled conditions. Each batch undergoes strict quality testing to maintain purity and consistency in line with international standards before export.",
+      "We operate with a clear understanding of global market requirements, quality benchmarks, and buyer expectations. That is why we ensure every shipment fully complies with the importing country’s regulations and product specifications before dispatch.",
+      "We believe in transparent communication, ethical business practices, and building long-term partnerships. Kodai Global Exports is committed to creating sustainable value and developing trusted relationships with customers across global markets."
+    ],
+    "highlights": [
+      "Quality-tested batches",
+      "Export-ready documentation",
+      "Controlled production process"
+    ]
+  },
+  "markets": {
+    "tagline": "Global Markets We Serve",
+    "title": "Supplying premium essential oils across {key international markets}",
+    "description": "We work with buyers who expect clear communication, reliable export handling, and consistent quality across every shipment.",
+    "countries": [
+      "United States",
+      "Germany",
+      "France",
+      "United Kingdom",
+      "United Arab Emirates",
+      "Saudi Arabia",
+      "Singapore",
+      "Australia"
+    ]
+  },
+  "certifications": {
+    "tagline": "Certifications",
+    "title": "Compliance and recognition that support our {export readiness}",
+    "logos": [
+      {
+        "name": "APEDA",
+        "imageSrc": "/images/apeda.png",
+        "imageAlt": "APEDA certification"
+      },
+      {
+        "name": "Chemexcil",
+        "imageSrc": "/images/chemexcil.png",
+        "imageAlt": "Chemexcil certification"
+      },
+      {
+        "name": "FSSAI",
+        "imageSrc": "/images/fssai.png",
+        "imageAlt": "FSSAI certification"
+      },
+      {
+        "name": "IEC",
+        "imageSrc": "/images/Kodai IEC.png",
+        "imageAlt": "IEC certificate"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Looking for detailed product information?",
+    "description": "Explore our product range or connect directly with our export team for pricing, documentation, and shipment support.",
+    "primary": {
+      "label": "View Products",
+      "href": "/products"
+    },
+    "secondary": {
+      "label": "Contact Exports Team",
+      "href": "/contact"
+    }
+  }
+}

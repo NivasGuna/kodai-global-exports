@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "badge": "Sustainable • Pure • Reliable",
+    "title": "The Essence of {Purity}",
+    "subtitle": "Leading the way in premium Essential Oil exports from the heart of the hills, beginning with our flagship high-purity Lemongrass Oil.",
+    "imageAlt": "Lush Lemongrass Field",
+    "imageSrc": "/images/about-hero-banner.jpeg"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us?",
+    "description": "Kodai Global Exports follows a {structured and quality-focused approach} in the production and export of premium Essential Oils and Natural Extracts. We give high importance on consistency and purity in every batch, while strictly following international quality standards throughout our operations.",
+    "subDescription": "Our current specialty, Lemongrass Oil, is produced from carefully selected raw materials and processed under controlled conditions to maintain high quality. Before shipment, every batch is tested and verified to ensure it meets global standards and buyer requirements.",
+    "quote": "Rather than making big claims, we focus on honest communication, transparency, and proper documentation. Our structured processes help us maintain reliability in international markets.",
+    "badges": {
+      "tested": "Tested Batch",
+      "origin": "Pure Origin"
+    },
+    "stat": {
+      "value": "100%",
+      "label": "Pure Essential Oil"
+    },
+    "imageAlt": "Quality Control",
+    "imageSrc": "/images/why-choose-us.jpg"
+  },
+  "missionVision": {
+    "bgAlt": "Nature Background",
+    "bgSrc": "/images/mission-vision.jpg",
+    "mission": {
+      "title": "Our Mission",
+      "description": "Our mission is to produce and supply high-quality, pure Essential Oils and Natural Extracts that meet international standards and buyer requirements. We are fully committed to maintaining consistent quality and ensuring on-time delivery through responsible operations."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "Our vision is to become a globally trusted producer of premium Essential Oils, recognized for quality excellence, sustainability, and responsible business practices."
+    }
+  },
+  "values": {
+    "tagline": "Our Foundation",
+    "title": "Guided by {Values}, Driven by Quality",
+    "items": [
+      {
+        "title": "Quality",
+        "description": "We follow strict quality control and testing procedures in line with international standards to produce premium Essential Oils.",
+        "details": "Each batch is carefully inspected and verified before dispatch to ensure consistent quality and purity.",
+        "icon": "Award"
+      },
+      {
+        "title": "Commitment",
+        "description": "Customer satisfaction is our top priority. We focus on building long-term professional relationships.",
+        "details": "Delivering consistent quality and reliable service every time is our core promise.",
+        "icon": "Handshake"
+      },
+      {
+        "title": "Transparency",
+        "description": "We maintain complete transparency in our production process, quality testing, and export documentation.",
+        "details": "Integrity and ethical business practices are the foundation of everything we do.",
+        "icon": "Eye"
+      },
+      {
+        "title": "Responsibility",
+        "description": "We strictly follow all regulatory, safety, and export compliance standards professionally.",
+        "details": "Ensuring every shipment is delivered safely, reliably, and professionally to international markets.",
+        "icon": "ShieldCheck"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to experience the pure essence?",
+    "button": "Connect With Us Today"
+  }
+}

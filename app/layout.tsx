@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter, Playfair_Display, Geist } from 'next/font/google';
 import './globals.css';
 import { cn } from "@/lib/utils";
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -22,10 +24,11 @@ export const metadata: Metadata = {
     default: 'Kodai Global Exports',
     template: '%s | Kodai Global Exports',
   },
-  description: 'Premium Lemongrass Oil Export Company',
+  description: 'Premium Essential Oils & Natural Extracts Export Company',
   keywords: [
-    'lemongrass oil',
     'essential oils',
+    'natural extracts',
+    'lemongrass oil',
     'oil export India',
     'natural oils supplier',
     'Kodai exports',
@@ -35,7 +38,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://yourdomain.com'),
   openGraph: {
     title: 'Kodai Global Exports',
-    description: 'Premium Lemongrass Oil Export Company',
+    description: 'Premium Essential Oils & Natural Extracts Export Company',
     url: 'https://yourdomain.com',
     siteName: 'Kodai Global Exports',
     locale: 'en_IN',
@@ -46,7 +49,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn("h-full", "antialiased", inter.variable, playfair.variable, "font-sans", geist.variable)}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-screen flex flex-col font-sans text-kodai-dark" suppressHydrationWarning>
+        <Navbar />
+        <main className="flex-1 pt-[var(--kodai-header-height)]">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
