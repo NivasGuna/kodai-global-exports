@@ -26,14 +26,13 @@
     "title": "Supplying premium essential oils across {key international markets}",
     "description": "We work with buyers who expect clear communication, reliable export handling, and consistent quality across every shipment.",
     "countries": [
-      "United States",
       "Germany",
       "France",
-      "United Kingdom",
-      "United Arab Emirates",
+      "Kuwait",
       "Saudi Arabia",
-      "Singapore",
-      "Australia"
+      "United Arab Emirates",
+      "Bangladesh",
+      "South Africa"
     ]
   },
   "certifications": {
@@ -47,7 +46,7 @@
       },
       {
         "name": "Chemexcil",
-        "imageSrc": "/images/chemexcil.png",
+        "imageSrc": "/images/chemexcil.jpg",
         "imageAlt": "Chemexcil certification"
       },
       {
@@ -57,8 +56,13 @@
       },
       {
         "name": "IEC",
-        "imageSrc": "/images/Kodai IEC.png",
+        "imageSrc": "/images/iec.png",
         "imageAlt": "IEC certificate"
+      },
+      {
+        "name": "Natural Product",
+        "imageSrc": "/images/natural_product.png",
+        "imageAlt": "Natural Product quality mark"
       }
     ]
   },

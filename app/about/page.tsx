@@ -31,11 +31,11 @@ export default function AboutPage() {
             src={aboutData.hero.imageSrc}
             alt={aboutData.hero.imageAlt}
             fill
-            className="object-cover object-center brightness-[0.45]"
+            className="object-cover object-center brightness-[0.94]"
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-kodai-dark/92 via-kodai-dark/78 to-kodai-dark/45" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.2),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_24%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-var(--kodai-header-height))] max-w-[85rem] flex-col justify-center px-4 py-16 sm:px-6 md:px-10 md:py-20">
@@ -206,7 +206,29 @@ export default function AboutPage() {
           })}
         </div>
 
-        <div className="relative mt-20 overflow-hidden rounded-[3rem] bg-kodai-dark p-10 text-center text-white shadow-[0_24px_80px_rgba(26,31,46,0.14)] sm:p-14">
+        <div className="mt-24 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="relative aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
+            <Image
+              src={aboutData.mdMessage.imageSrc}
+              alt={aboutData.mdMessage.imageAlt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="space-y-6">
+            <h2 className="font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
+              <FormattedText text={aboutData.mdMessage.title} />
+            </h2>
+            <div className="space-y-4 text-base leading-8 text-gray-600">
+              {aboutData.mdMessage.paragraphs.map((para, index) => (
+                <p key={index}>{para}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mt-24 overflow-hidden rounded-[3rem] bg-kodai-dark p-10 text-center text-white shadow-[0_24px_80px_rgba(26,31,46,0.14)] sm:p-14">
           <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10" />
           <div className="relative z-10 mx-auto max-w-2xl">
             <Sparkles size={48} className="mx-auto mb-8 opacity-40" />

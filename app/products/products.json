@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "badge": "Our Products",
+    "title": "Premium oil products built for {reliable exports}",
+    "subtitle": "Our current range includes export-grade Lemongrass Oil and Eucalyptus Oil, prepared to support quality-focused buyers across Indian and international markets.",
+    "features": [
+      "Lemongrass Oil",
+      "Eucalyptus Oil",
+      "Global documentation support"
+    ]
+  },
+  "range": {
+    "tagline": "Product Range",
+    "title": "Products prepared for consistent quality and export readiness",
+    "ctaText": "Request pricing"
+  },
+  "soon": {
+    "title": "More products coming soon",
+    "description": "We are expanding our portfolio with additional essential oils and natural extracts while keeping the same quality-focused export process."
+  }
+}

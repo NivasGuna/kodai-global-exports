@@ -4,7 +4,7 @@
     "title": "The Essence of {Purity}",
     "subtitle": "Leading the way in premium Essential Oil exports from the heart of the hills, beginning with our flagship high-purity Lemongrass Oil.",
     "imageAlt": "Lush Lemongrass Field",
-    "imageSrc": "/images/about-hero-banner.jpeg"
+    "imageSrc": "/images/about-hero-banner.jpg"
   },
   "whyChooseUs": {
     "title": "Why Choose Us?",
@@ -62,6 +62,17 @@
         "details": "Ensuring every shipment is delivered safely, reliably, and professionally to international markets.",
         "icon": "ShieldCheck"
       }
+    ]
+  },
+  "mdMessage": {
+    "title": "{Managing Director’s} Message",
+    "imageSrc": "/images/md_message.png",
+    "imageAlt": "Managing Director",
+    "paragraphs": [
+      "Kodai Global Exports was established with a clear vision to reliably supply high-quality agricultural and essential oil products from India to global markets.",
+      "Guided by our core values of quality, transparency, and regulatory compliance, we are committed to building long-term, trusted relationships with our customers, farmers, and business partners.",
+      "We are dedicated to delivering premium Lemongrass Oil and agricultural products that meet international buyer expectations in terms of quality, sustainability, and on-time delivery.",
+      "Through a dependable supply chain and strong partnerships, we continuously strive to create lasting value across global markets."
     ]
   },
   "cta": {

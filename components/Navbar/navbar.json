@@ -1,0 +1,17 @@
+{
+  "navLinks": [
+    { "label": "Home", "href": "/" },
+    { "label": "About", "href": "/about" },
+    { "label": "FAQ & Reviews", "href": "/faq-review" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "productLinks": [
+    { "label": "Lemongrass Oil", "href": "/products#lemongrass-oil" },
+    { "label": "Eucalyptus Oil", "href": "/products#eucalyptus-oil" }
+  ],
+  "productsMenu": {
+    "title": "Products",
+    "viewAll": "View All Products",
+    "categoryTitle": "Essential Oils"
+  }
+}

@@ -22,11 +22,11 @@ export default function HomePage() {
             src={homeContent.hero.imageSrc}
             alt={homeContent.hero.imageAlt}
             fill
-            className="object-cover object-center brightness-[0.42]"
+            className="object-cover object-center brightness-[0.94]"
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-kodai-dark/92 via-kodai-dark/76 to-kodai-dark/42" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.2),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_24%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-var(--kodai-header-height))] max-w-[85rem] flex-col justify-center px-4 py-16 sm:px-6 md:px-10 md:py-20">
@@ -114,13 +114,24 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-10 mb-10 overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)]">
+            <Image
+              src="/images/global_markets_map.png"
+              alt="Global markets highlighted on world map: Germany, France, Kuwait, Saudi Arabia, UAE, Bangladesh, South Africa"
+              width={1600}
+              height={900}
+              sizes="100vw"
+              className="h-auto w-full object-cover"
+            />
+          </div>
+
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:flex lg:flex-wrap">
             {homeContent.markets.countries.map((country) => (
               <div
                 key={country}
-                className="flex items-center gap-3 rounded-2xl border border-kodai-green/10 bg-kodai-green/5 px-4 py-4 text-sm font-semibold text-kodai-dark"
+                className="flex flex-1 items-center justify-center gap-3 rounded-2xl border border-kodai-green/10 bg-kodai-green/5 px-5 py-4 text-sm font-semibold text-kodai-dark whitespace-nowrap min-w-[160px] max-w-full lg:min-w-fit"
               >
-                <Globe2 size={18} className="text-kodai-green" />
+                <Globe2 size={18} className="text-kodai-green shrink-0" />
                 <span>{country}</span>
               </div>
             ))}
@@ -138,11 +149,11 @@ export default function HomePage() {
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-6 md:grid-cols-4">
+        <div className="mt-14 flex flex-wrap justify-center gap-6">
           {homeContent.certifications.logos.map((logo) => (
             <div
               key={logo.name}
-              className="flex min-h-[180px] flex-col items-center justify-center rounded-[2rem] border border-white/70 bg-white/85 p-6 text-center shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl"
+              className="flex min-h-[180px] w-full max-w-[240px] flex-col items-center justify-center rounded-[2rem] border border-white/70 bg-white/85 p-6 text-center shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl"
             >
               <div className="relative h-20 w-full">
                 <Image

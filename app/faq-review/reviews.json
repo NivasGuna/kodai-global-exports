@@ -1,30 +1,30 @@
 [
   {
-    "name": "James Wilson",
-    "role": "Procurement Manager, Global Fragrances",
+    "name": "Martin Schneider",
+    "role": "Procurement Director (Germany)",
     "rating": 5,
-    "comment": "The quality of the lemongrass oil from Kodai Global Exports is exceptional. The citral content is consistently high, and the packaging is perfect for international shipping.",
-    "avatar": "JW"
+    "comment": "We are very satisfied with the eucalyptus oil supplied by Kodai Global Exports. The product has excellent purity and a strong natural aroma. Consistent quality in every shipment.",
+    "avatar": "MS"
   },
   {
-    "name": "Maria Garcia",
-    "role": "CEO, Natural Wellness Co.",
+    "name": "Claire Dubois",
+    "role": "Sourcing Specialist (France)",
     "rating": 5,
-    "comment": "Reliable supplier and great communication. We've been sourcing our essential oils from them for over two years now, and they never disappoint.",
-    "avatar": "MG"
+    "comment": "Kodai Global Exports delivers premium quality eucalyptus oil, perfect for cosmetic and wellness applications. Packaging and delivery are highly professional.",
+    "avatar": "CD"
   },
   {
-    "name": "Arjun Mehta",
-    "role": "Director, EverGreen Organics",
-    "rating": 4,
-    "comment": "Good quality product and timely delivery. The team is professional and handles bulk orders very efficiently.",
-    "avatar": "AM"
+    "name": "Ahmed Al-Sabah",
+    "role": "General Manager (Kuwait)",
+    "rating": 5,
+    "comment": "The Lemongrass oil from Kodai Global Exports is fresh and authentic with a strong fragrance. We are happy with the consistent supply and service.",
+    "avatar": "AA"
   },
   {
-    "name": "Sophie Chen",
-    "role": "Product Developer, Glow Cosmetics",
+    "name": "Omar Al-Farsi",
+    "role": "Supply Chain Partner (UAE)",
     "rating": 5,
-    "comment": "We use their lemongrass oil in our premium skincare line. The purity is unmatched, and it blends beautifully with our other ingredients.",
-    "avatar": "SC"
+    "comment": "We trust Kodai Global Exports for high-quality lemongrass oil. Reliable bulk supply and timely delivery make them a strong business partner.",
+    "avatar": "OA"
   }
 ]

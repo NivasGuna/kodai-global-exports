@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Star, ArrowRight } from 'lucide-react';
+import { Star, StarHalf, ArrowRight } from 'lucide-react';
 import faqList from './faq.json';
 import reviews from './reviews.json';
 
@@ -19,14 +19,14 @@ export default function Page() {
     <main className="pb-24">
       <section className="relative isolate min-h-[72svh] overflow-hidden sm:min-h-[calc(100vh-var(--kodai-header-height))]">
         <Image
-          src="/images/faq-review-hero-banner.jpeg"
+          src="/images/mission-vision.jpg"
           alt="FAQ Banner"
           fill
           sizes="100vw"
-          className="object-cover object-center brightness-[0.42]"
+          className="object-cover object-center brightness-[0.94]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-kodai-dark/92 via-kodai-dark/78 to-kodai-dark/45" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.2),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_24%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-[85rem] flex-col justify-end px-4 py-12 sm:min-h-[calc(100vh-var(--kodai-header-height))] sm:justify-center sm:px-6 md:px-10 md:py-20">
@@ -83,7 +83,7 @@ export default function Page() {
                   Can&apos;t find what you&apos;re looking for? Reach out for product guidance, documentation support, and export clarifications.
                 </p>
                 <a
-                  href="mailto:Kodaiglobalexports@gmail.com"
+                  href="mailto:kge@kodaiglobalexports.com"
                   className="mt-5 inline-flex items-center gap-2 rounded-full bg-kodai-dark px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-kodai-dark/90"
                 >
                   Contact Support <ArrowRight size={16} />
@@ -158,13 +158,34 @@ export default function Page() {
                   </p>
                 </div>
                 <div className="ml-auto flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={18}
-                      className={i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'}
-                    />
-                  ))}
+                  {[...Array(5)].map((_, i) => {
+                    const ratingValue = i + 1;
+                    if (review.rating >= ratingValue) {
+                      return (
+                        <Star
+                          key={i}
+                          size={18}
+                          className="fill-yellow-400 text-yellow-400"
+                        />
+                      );
+                    } else if (review.rating >= ratingValue - 0.5) {
+                      return (
+                        <StarHalf
+                          key={i}
+                          size={18}
+                          className="fill-yellow-400 text-yellow-400"
+                        />
+                      );
+                    } else {
+                      return (
+                        <Star
+                          key={i}
+                          size={18}
+                          className="text-gray-200"
+                        />
+                      );
+                    }
+                  })}
                 </div>
               </div>
               <p className="relative z-10 mt-6 text-base leading-8 text-gray-600 italic">

@@ -20,7 +20,7 @@ body {
   --kodai-nav-surface: rgba(255, 255, 255, 0.78);
   --kodai-nav-border: rgba(26, 31, 46, 0.08);
   --kodai-nav-text: #4b5563;
-  --kodai-nav-active: #1a1f2e;
+  --kodai-nav-active: var(--kodai-green);
   --kodai-nav-active-ring: rgba(45, 122, 79, 0.22);
   --kodai-nav-accent: rgba(45, 122, 79, 0.6);
 }
@@ -47,4 +47,30 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--kodai-header-height);
+}
+
+/* Product Highlight Animation & State */
+[id]:target {
+  scroll-margin-top: calc(var(--kodai-header-height) + 2rem);
+  animation: card-pulse-enter 1s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: 3px solid var(--kodai-green);
+  outline-offset: 4px;
+  border-color: var(--kodai-green-dark);
+  box-shadow: 0 20px 50px rgba(45,122,79,0.15);
+}
+
+@keyframes card-pulse-enter {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 12px 40px rgba(26,31,46,0.05);
+  }
+  30% {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(45,122,79,0.2);
+    border-color: var(--kodai-green-dark);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 12px 40px rgba(26,31,46,0.05);
+  }
 }

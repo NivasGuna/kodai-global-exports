@@ -17,16 +17,15 @@
     {
       "title": "Products",
       "links": [
-        { "label": "Lemongrass Oil", "href": "/products" },
-        { "label": "Natural Extracts", "href": "/products" },
-        { "label": "Essential Oils", "href": "/products" }
+        { "label": "Lemongrass Oil", "href": "/products#lemongrass-oil" },
+        { "label": "Eucalyptus Oil", "href": "/products#eucalyptus-oil" }
       ]
     },
     {
       "title": "Contact Us",
       "info": {
         "address": "Kodai Global Exports \nPeriyakulam, Theni District-625601, Tamilnadu, India.",
-        "email": "Kodaiglobalexports@gmail.com",
+        "email": "kge@kodaiglobalexports.com",
         "phone": "+91 9677447233"
       }
     }

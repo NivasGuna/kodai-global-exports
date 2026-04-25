@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { Copyright } from 'lucide-react';
+import { Copyright, Leaf } from 'lucide-react';
 import footerData from './footer.json';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -28,17 +28,11 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-14 h-14 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                <Image 
-                  src="/images/kodaiLogo.svg" 
-                  alt="Kodai Global Logo" 
-                  width={56} 
-                  height={56} 
-                  className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]"
-                />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-kodai-green shadow-sm transition-transform duration-300 group-hover:scale-110">
+                <Leaf size={24} />
               </div>
-              <span className="text-xl font-bold font-playfair tracking-tight">
-                Kodai<span className="text-kodai-green">Global</span>
+              <span className="text-2xl font-bold font-playfair tracking-wider uppercase">
+                KODAI <span className="text-kodai-green italic font-medium">GLOBAL</span> <span className="text-white opacity-90">EXPORTS</span>
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">

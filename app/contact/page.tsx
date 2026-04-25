@@ -73,16 +73,16 @@ export default function ContactPage() {
   return (
     <main className="pb-24">
       <section className="relative isolate min-h-[calc(100vh-var(--kodai-header-height))] overflow-hidden">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 ">
           <Image
-            src="/images/mission-vision.jpg"
+            src="/images/contact-hero-banner.jpg"
             alt="Contact Us Banner"
             fill
-            className="object-cover object-center brightness-[0.42]"
+            className="object-cover object-center brightness-[0.94]"
             priority
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-kodai-dark/90 via-kodai-dark/78 to-kodai-dark/45" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_26%)]" />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-var(--kodai-header-height))] max-w-[85rem] flex-col justify-center px-4 py-16 sm:px-6 md:px-10 md:py-20">
