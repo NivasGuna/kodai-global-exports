@@ -24,7 +24,7 @@ export default function Footer() {
     <footer className="bg-kodai-dark text-white pt-20 pb-10 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-          
+
           {/* Brand Section */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
@@ -47,8 +47,8 @@ export default function Footer() {
               <ul className="space-y-4">
                 {section.links && section.links.map((link, lIdx) => (
                   <li key={lIdx}>
-                    <Link 
-                      href={link.href} 
+                    <Link
+                      href={link.href}
                       className="text-gray-400 hover:text-kodai-green transition-colors text-sm font-medium flex items-center gap-2 group"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-kodai-green opacity-0 group-hover:opacity-100 transition-opacity" />

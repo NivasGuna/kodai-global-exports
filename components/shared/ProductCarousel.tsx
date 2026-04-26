@@ -63,8 +63,8 @@ export function ProductCarousel({ images, name }: ProductCarouselProps) {
               onClick={() => api?.scrollTo(i)}
               className={cn(
                 "h-1.5 w-1.5 rounded-full transition-all duration-300",
-                current === i 
-                  ? "w-6 bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.5)]" 
+                current === i
+                  ? "w-6 bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.5)]"
                   : "bg-white/50 hover:bg-white/80"
               )}
               aria-label={`Go to slide ${i + 1}`}
@@ -72,7 +72,7 @@ export function ProductCarousel({ images, name }: ProductCarouselProps) {
           ))}
         </div>
       )}
-      
+
       {/* Subtle overlay to prevent "black" flashes/artifacts */}
       <div className="absolute inset-0 pointer-events-none bg-kodai-dark/5 opacity-0 transition-opacity duration-500 rounded-[2.5rem]" />
     </div>

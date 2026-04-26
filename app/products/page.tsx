@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,34 +16,48 @@ import productsData from './products.json';
 import { cn } from '@/lib/utils';
 
 function ProductsContent() {
-  const [currentHash, setCurrentHash] = useState('');
+  const [activeProductId, setActiveProductId] = useState<string | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const updateHash = () => setCurrentHash(window.location.hash);
-    updateHash();
-    
-    window.addEventListener('hashchange', updateHash);
-    return () => window.removeEventListener('hashchange', updateHash);
+    const handleSync = () => {
+      const hash = window.location.hash.replace('#', '');
+      setActiveProductId(hash || null);
+
+      if (hash) {
+        const el = document.getElementById(hash);
+        if (el) {
+          requestAnimationFrame(() => {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+      }
+    };
+
+    handleSync();
+    window.addEventListener('hashchange', handleSync);
+    return () => window.removeEventListener('hashchange', handleSync);
   }, [pathname, searchParams]);
 
   return (
     <main className="pb-24">
       <section className="relative isolate min-h-screen overflow-hidden">
         <HeroBackground
-          src="/images/product-hero-banner.png"
+          src="/images/product-hero-banner.jpeg"
           alt="Kodai Global products"
           imageClassName="object-[90%_center]"
         />
+        {/* Stronger gradient overlay specifically for products hero to ensure text readability on light images */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-transparent z-0 pointer-events-none" />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center text-center md:items-start md:text-left px-4 pb-16 sm:px-6 md:px-10 md:pt-36 md:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center text-center md:items-start md:text-left px-4 pt-[calc(var(--kodai-header-height)+2rem)] pb-16 sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <div className="max-w-4xl rounded-3xl bg-kodai-dark/10 p-2 backdrop-blur-[2px] sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
             <HeroBadge>{productsData.hero.badge}</HeroBadge>
-            <h1 className="mt-6 max-w-2xl font-playfair text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-7xl">
+            <h1 className="mt-6 max-w-2xl font-playfair text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-7xl hero-text-shadow">
               <FormattedText text={productsData.hero.title} />
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-8 text-white/75 sm:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/85 sm:text-lg hero-text-shadow-sm">
               {productsData.hero.subtitle}
             </p>
 
@@ -51,9 +65,9 @@ function ProductsContent() {
               {productsData.hero.features.map((item) => (
                 <div
                   key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-white/80 backdrop-blur-md"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase text-kodai-green shadow-xl shadow-black/10 backdrop-blur-sm transition-transform hover:scale-105"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-kodai-green" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.4)]" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -74,16 +88,17 @@ function ProductsContent() {
 
         <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {PRODUCTS.map((product) => {
-            const isActive = currentHash === `#${product.id}`;
+            const isActive = activeProductId === product.id;
             return (
               <div
                 key={product.id}
                 id={product.id}
+                data-active={isActive}
                 className={cn(
-                  "group relative flex flex-col h-full overflow-hidden rounded-[2.5rem] border transition-all duration-700 scroll-mt-32",
-                  isActive 
-                    ? "border-kodai-green bg-white shadow-[0_30px_70px_rgba(45,122,79,0.22)] ring-1 ring-kodai-green/40 -translate-y-3 z-10" 
-                    : "border-white/70 bg-white/85 shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl hover:-translate-y-1 hover:border-kodai-green/20 hover:shadow-[0_20px_60px_rgba(45,122,79,0.08)]"
+                  "group relative flex flex-col h-full overflow-hidden rounded-[2.5rem] border transition-all duration-500 scroll-mt-32",
+                  isActive
+                    ? "border-kodai-green bg-white shadow-[0_40px_80px_rgba(45,122,79,0.25)] ring-2 ring-kodai-green/50 -translate-y-3 z-10"
+                    : "border-black/5 bg-white shadow-[0_12px_40px_rgba(0,0,0,0.03)] hover:-translate-y-1 hover:border-black/10 hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)]"
                 )}
               >
                 {isActive && (
@@ -126,8 +141,8 @@ function ProductsContent() {
                       <DialogTrigger asChild>
                         <button className={cn(
                           "group/btn flex w-full items-center justify-between rounded-2xl border p-2 pl-6 transition-all duration-300",
-                          isActive 
-                            ? "bg-kodai-green border-kodai-green text-white shadow-lg" 
+                          isActive
+                            ? "bg-kodai-green border-kodai-green text-white shadow-lg"
                             : "border-kodai-green/10 bg-kodai-green/5 hover:bg-kodai-green hover:border-kodai-green"
                         )}>
                           <span className={cn(

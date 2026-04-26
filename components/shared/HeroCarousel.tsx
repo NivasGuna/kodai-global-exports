@@ -57,9 +57,10 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                 src={slide.imageSrc}
                 alt={slide.imageAlt}
                 priority={index === 0}
+                blur={true}
               />
 
-              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-center text-center px-4 md:items-start md:text-left sm:px-6 md:px-10">
+              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-center text-center px-4 pt-[calc(var(--kodai-header-height)+2rem)] md:items-start md:text-left sm:px-6 md:px-10 md:pt-0">
                 <AnimatePresence mode="wait">
                   {current === index && (
                     <motion.div
@@ -82,7 +83,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.7 }}
-                        className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-7xl"
+                        className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:text-5xl md:text-7xl hero-text-shadow"
                       >
                         <FormattedText text={slide.title} />
                       </motion.h1>
@@ -91,7 +92,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.7 }}
-                        className="mt-6 max-w-3xl text-base leading-8 text-white/75 sm:text-lg"
+                        className="mt-6 max-w-3xl text-base leading-8 text-white/90 sm:text-lg hero-text-shadow-sm"
                       >
                         {slide.subtitle}
                       </motion.p>
@@ -107,7 +108,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                           return (
                             <div
                               key={item}
-                              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-white/80 backdrop-blur-md"
+                              className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase text-kodai-green shadow-xl shadow-black/10 backdrop-blur-sm transition-transform hover:scale-105"
                             >
                               <Icon size={14} className="text-kodai-green" />
                               <span>{item}</span>

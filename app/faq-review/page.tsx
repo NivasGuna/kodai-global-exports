@@ -25,25 +25,22 @@ export default function Page() {
           alt="FAQ Banner"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center md:items-start px-4 pb-12 sm:px-6 md:px-10 md:pt-36 md:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center md:items-start px-4 pt-[calc(var(--kodai-header-height)+2rem)] pb-12 sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <HeroBadge>Help Center</HeroBadge>
-          <h1 className="mt-5 max-w-4xl font-playfair text-3xl font-semibold leading-tight text-white sm:mt-6 sm:text-5xl md:text-7xl">
+          <h1 className="mt-5 max-w-4xl font-playfair text-3xl font-semibold leading-tight text-white sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow">
             Frequently Asked <span className="text-kodai-green">Questions</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/75 sm:mt-6 sm:text-lg sm:leading-8">
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/85 sm:mt-6 sm:text-lg sm:leading-8 hero-text-shadow-sm">
             Everything you need to know about our premium essential oils, sourcing process, and global export standards.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
-            {['Premium Quality', 'Global Logistics'].map((item, index) => (
+            {['Premium Quality', 'Global Logistics'].map((item) => (
               <div
                 key={item}
-                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${index === 1
-                  ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
-                  : 'border-white/15 bg-white/8 text-white/78'
-                  }`}
+                className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase text-kodai-green shadow-xl shadow-black/10 backdrop-blur-sm transition-transform hover:scale-105"
               >
-                <span className={`h-1.5 w-1.5 rounded-full ${index === 1 ? 'bg-kodai-green' : 'bg-white/55'}`} />
+                <span className="h-1.5 w-1.5 rounded-full bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.4)]" />
                 <span>{item}</span>
               </div>
             ))}
