@@ -60,7 +60,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                 blur={true}
               />
 
-              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-20 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:pb-32 sm:px-6 md:px-10 md:pt-0 md:pb-16">
+              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-20 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:pb-32 sm:px-6 md:px-10 md:pt-36 md:pb-20">
                 <AnimatePresence mode="wait">
                   {current === index && (
                     <motion.div
@@ -125,7 +125,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
         </CarouselContent>
       </Carousel>
 
-      <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-6 sm:bottom-12">
+      <div className="absolute bottom-6 left-0 right-0 z-20 hidden lg:flex justify-center gap-6 sm:bottom-12">
         {slides.map((_, i) => (
           <button
             key={i}

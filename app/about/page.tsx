@@ -27,7 +27,7 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function AboutPage() {
   return (
-    <main className="pb-24">
+    <main className="pb-24 overflow-x-hidden">
       <section className="relative isolate min-h-screen overflow-hidden">
         <HeroBackground
           src={aboutData.hero.imageSrc}
