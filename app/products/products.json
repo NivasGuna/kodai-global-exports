@@ -5,14 +5,25 @@
     "subtitle": "Our current range includes export-grade Lemongrass Oil and Eucalyptus Oil, prepared to support quality-focused buyers across Indian and international markets.",
     "features": [
       "Lemongrass Oil",
-      "Eucalyptus Oil",
-      "Global documentation support"
+      "Eucalyptus Oil"
     ]
   },
   "range": {
     "tagline": "Product Range",
     "title": "Products prepared for consistent quality and export readiness",
     "ctaText": "Request pricing"
+  },
+  "brands": {
+    "tagline": "Trusted Partnerships",
+    "title": "Brands We've {Worked With}",
+    "subtitle": "Proud to have supplied premium essential oils to discerning brands across the fragrance, wellness, and botanical extract industries.",
+    "items": [
+      "Nextral Natural Oils",
+      "Lyrent Essence",
+      "Elunor Parfums",
+      "Corvyn Botanicals",
+      "Quorix Extracts"
+    ]
   },
   "soon": {
     "title": "More products coming soon",

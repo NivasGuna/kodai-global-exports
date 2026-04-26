@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -10,6 +9,10 @@ import { FormTextarea } from '@/components/shared/FormTextarea';
 import { useForm, useWatch } from 'react-hook-form';
 import contactContent from './contact.json';
 import { Label } from '@/components/ui/label';
+import { HeroBackground } from '@/components/shared/HeroBackground';
+import { HeroBadge } from '@/components/shared/HeroBadge';
+import { sendContactEmail } from './actions';
+import { toast } from 'sonner';
 
 type FormValues = {
   name: string;
@@ -40,15 +43,15 @@ export default function ContactPage() {
     setValue,
     reset,
     clearErrors,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FormValues>({
-    defaultValues: { 
+    defaultValues: {
       name: '',
       email: '',
       subject: '',
       message: '',
-      robot: false 
-    }
+      robot: false,
+    },
   });
 
   const isVerified = useWatch({
@@ -56,40 +59,45 @@ export default function ContactPage() {
     name: 'robot',
   });
 
-  const onSubmit = () => {
+  const onSubmit = async (data: FormValues) => {
     setFormStatus('submitting');
-    // Simulate API call
-    setTimeout(() => {
-      setFormStatus('success');
-      setTimeout(() => {
-        setFormStatus('idle');
-        reset({ name: '', email: '', subject: '', message: '', robot: false });
-        clearErrors();
-      }, 3000);
-    }, 1500);
-  };
+    try {
+      const result = await sendContactEmail({
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      });
 
+      if (result.success) {
+        setFormStatus('success');
+        toast.success('Message sent successfully! We will get back to you soon.');
+        setTimeout(() => {
+          setFormStatus('idle');
+          reset({ name: '', email: '', subject: '', message: '', robot: false });
+          clearErrors();
+        }, 3000);
+      } else {
+        setFormStatus('idle');
+        toast.error(result.error || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setFormStatus('idle');
+      toast.error('An unexpected error occurred. Please try again later.');
+    }
+  };
 
   return (
     <main className="pb-24">
-      <section className="relative isolate min-h-[calc(100vh-var(--kodai-header-height))] overflow-hidden">
-        <div className="absolute inset-0 ">
-          <Image
-            src="/images/contact-hero-banner.jpg"
-            alt="Contact Us Banner"
-            fill
-            className="object-cover object-center brightness-[0.94]"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.22),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_26%)]" />
+      <section className="relative isolate min-h-screen overflow-hidden">
+        <HeroBackground
+          src="/images/contact-hero-banner.jpeg"
+          alt="Contact Us Banner"
+        />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-var(--kodai-header-height))] max-w-[85rem] flex-col justify-center px-4 py-16 sm:px-6 md:px-10 md:py-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center text-center md:items-start md:text-left px-4 pb-16 sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-kodai-green uppercase backdrop-blur-md">
-              {contactContent.hero.badge}
-            </span>
+            <HeroBadge>{contactContent.hero.badge}</HeroBadge>
             <h1 className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-7xl">
               {contactContent.hero.title}
             </h1>
@@ -100,19 +108,17 @@ export default function ContactPage() {
 
           <div className="mt-10 flex flex-wrap gap-3">
             {[
-              'Direct export support',
-              '24 hour response window',
               'Premium product inquiries',
+              'Direct export support',
             ].map((item, index) => (
               <div
                 key={item}
-                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${
-                  index === 2
-                    ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
-                    : 'border-white/15 bg-white/8 text-white/78'
-                }`}
+                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${index === 1
+                  ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
+                  : 'border-white/15 bg-white/8 text-white/78'
+                  }`}
               >
-                <span className={`h-1.5 w-1.5 rounded-full ${index === 2 ? 'bg-kodai-green' : 'bg-white/55'}`} />
+                <span className={`h-1.5 w-1.5 rounded-full ${index === 1 ? 'bg-kodai-green' : 'bg-white/55'}`} />
                 <span>{item}</span>
               </div>
             ))}
@@ -191,7 +197,6 @@ export default function ContactPage() {
                     registration={register('name', { required: contactContent.form.fields.name.error.required })}
                     error={errors.name?.message as string}
                   />
-
                   <FormInput
                     type="email"
                     label={contactContent.form.fields.email.label}
@@ -201,8 +206,8 @@ export default function ContactPage() {
                       required: contactContent.form.fields.email.error.required,
                       pattern: {
                         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: contactContent.form.fields.email.error.invalid
-                      }
+                        message: contactContent.form.fields.email.error.invalid,
+                      },
                     })}
                     error={errors.email?.message as string}
                   />
@@ -216,7 +221,6 @@ export default function ContactPage() {
                     registration={register('subject', { required: contactContent.form.fields.subject.error.required })}
                     error={errors.subject?.message as string}
                   />
-
                   <FormTextarea
                     rows={5}
                     label={contactContent.form.fields.message.label}
@@ -229,11 +233,11 @@ export default function ContactPage() {
 
                 <div className="rounded-2xl border border-dashed border-kodai-green/15 bg-kodai-green/5 px-4 py-4">
                   <div className="flex items-center space-x-2">
-                    <input 
-                      type="checkbox" 
-                      className="hidden" 
+                    <input
+                      type="checkbox"
+                      className="hidden"
                       id="robot-hidden"
-                      {...register('robot', { required: contactContent.form.fields.robot.error.required })} 
+                      {...register('robot', { required: contactContent.form.fields.robot.error.required })}
                     />
                     <Checkbox
                       id="robot"
@@ -251,16 +255,19 @@ export default function ContactPage() {
                       {contactContent.form.fields.robot.label}
                     </Label>
                   </div>
-                  {errors.robot && <p className="mt-2 text-sm font-medium text-red-500 animate-fade-in">{errors.robot.message as string}</p>}
+                  {errors.robot && (
+                    <p className="mt-2 text-sm font-medium text-red-500 animate-fade-in">
+                      {errors.robot.message as string}
+                    </p>
+                  )}
                 </div>
 
                 <Button
                   disabled={formStatus === 'submitting' || formStatus === 'success'}
-                  className={`w-full rounded-2xl py-7 text-lg font-bold transition-all duration-300 overflow-hidden ${
-                    formStatus === 'success'
-                      ? 'border-none bg-emerald-500 hover:bg-emerald-600'
-                      : 'border-none bg-kodai-green hover:bg-kodai-green-dark'
-                  } ${formStatus === 'submitting' ? 'opacity-80' : ''}`}
+                  className={`w-full rounded-2xl py-7 text-lg font-bold transition-all duration-300 overflow-hidden ${formStatus === 'success'
+                    ? 'border-none bg-emerald-500 hover:bg-emerald-600'
+                    : 'border-none bg-kodai-green hover:bg-kodai-green-dark'
+                    } ${formStatus === 'submitting' ? 'opacity-80' : ''}`}
                 >
                   <div className="flex items-center justify-center gap-2">
                     {formStatus === 'idle' && (

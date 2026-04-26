@@ -8,6 +8,8 @@ import {
 import { Star, StarHalf, ArrowRight } from 'lucide-react';
 import faqList from './faq.json';
 import reviews from './reviews.json';
+import { HeroBackground } from '@/components/shared/HeroBackground';
+import { HeroBadge } from '@/components/shared/HeroBadge';
 
 export const metadata = {
   title: 'FAQ & Reviews | Kodai Global Exports',
@@ -17,22 +19,14 @@ export const metadata = {
 export default function Page() {
   return (
     <main className="pb-24">
-      <section className="relative isolate min-h-[72svh] overflow-hidden sm:min-h-[calc(100vh-var(--kodai-header-height))]">
-        <Image
+      <section className="relative isolate min-h-screen overflow-hidden">
+        <HeroBackground
           src="/images/mission-vision.jpg"
           alt="FAQ Banner"
-          fill
-          sizes="100vw"
-          className="object-cover object-center brightness-[0.94]"
-          priority
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.2),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_24%)]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-[85rem] flex-col justify-end px-4 py-12 sm:min-h-[calc(100vh-var(--kodai-header-height))] sm:justify-center sm:px-6 md:px-10 md:py-20">
-          <span className="inline-flex w-fit items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-kodai-green uppercase backdrop-blur-md">
-            Help Center
-          </span>
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center md:items-start px-4 pb-12 sm:px-6 md:px-10 md:pt-36 md:pb-20">
+          <HeroBadge>Help Center</HeroBadge>
           <h1 className="mt-5 max-w-4xl font-playfair text-3xl font-semibold leading-tight text-white sm:mt-6 sm:text-5xl md:text-7xl">
             Frequently Asked <span className="text-kodai-green">Questions</span>
           </h1>
@@ -41,14 +35,13 @@ export default function Page() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
-            {['Premium Quality', 'Global Logistics', 'Expert Support'].map((item, index) => (
+            {['Premium Quality', 'Global Logistics'].map((item, index) => (
               <div
                 key={item}
-                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${
-                  index === 1
-                    ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
-                    : 'border-white/15 bg-white/8 text-white/78'
-                }`}
+                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${index === 1
+                  ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
+                  : 'border-white/15 bg-white/8 text-white/78'
+                  }`}
               >
                 <span className={`h-1.5 w-1.5 rounded-full ${index === 1 ? 'bg-kodai-green' : 'bg-white/55'}`} />
                 <span>{item}</span>
@@ -67,6 +60,7 @@ export default function Page() {
                   src="/images/faq.jpg"
                   alt="Kodai Global Exports FAQ"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover"
                   priority
                 />
@@ -161,35 +155,17 @@ export default function Page() {
                   {[...Array(5)].map((_, i) => {
                     const ratingValue = i + 1;
                     if (review.rating >= ratingValue) {
-                      return (
-                        <Star
-                          key={i}
-                          size={18}
-                          className="fill-yellow-400 text-yellow-400"
-                        />
-                      );
+                      return <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />;
                     } else if (review.rating >= ratingValue - 0.5) {
-                      return (
-                        <StarHalf
-                          key={i}
-                          size={18}
-                          className="fill-yellow-400 text-yellow-400"
-                        />
-                      );
+                      return <StarHalf key={i} size={18} className="fill-yellow-400 text-yellow-400" />;
                     } else {
-                      return (
-                        <Star
-                          key={i}
-                          size={18}
-                          className="text-gray-200"
-                        />
-                      );
+                      return <Star key={i} size={18} className="text-gray-200" />;
                     }
                   })}
                 </div>
               </div>
               <p className="relative z-10 mt-6 text-base leading-8 text-gray-600 italic">
-                “{review.comment}”
+                "{review.comment}"
               </p>
             </div>
           ))}

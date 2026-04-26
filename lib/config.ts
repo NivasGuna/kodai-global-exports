@@ -24,7 +24,7 @@ export const PRODUCTS: Product[] = [
     name: "Lemongrass Oil",
     description: "Our premium lemongrass oil is meticulously extracted from high-quality Cymbopogon flexuosus using controlled steam distillation processes. It is highly valued in the export market for its purity, superior citral content, and consistent aromatic profile. Designed to meet the stringent requirements of international buyers, this oil serves as a versatile ingredient for aromatherapy, premium cosmetics, and high-end fragrance formulations across the global market.",
     image: "/images/why-choose-us.jpg",
-    images: ["/images/why-choose-us.jpg", "/images/lemongrassOil.png"],
+    images: ["/images/lemongrassOil_1.jpg", "/images/lemongrassOil_2.jpg"],
     featured: true,
     specifications: [
       { label: "Appearance", value: "Pale Yellow to Yellow Liquid" },
@@ -49,8 +49,8 @@ export const PRODUCTS: Product[] = [
     id: "eucalyptus-oil",
     name: "Eucalyptus Oil",
     description: "Kodai Global's eucalyptus oil is processed from handpicked leaves under strictly monitored conditions to ensure maximum cineole content and purity. This export-focused quality oil is recognized for its fresh, camphoraceous aroma and wide range of therapeutic applications. We provide structured quality control for every batch, making it a reliable choice for international pharmaceutical and home care industries looking for consistent excellence.",
-    image: "/images/natural_product.png",
-    images: ["/images/natural_product.png", "/images/why-choose-us.jpg"],
+    image: "/images/eucalyptus_oil_1",
+    images: ["/images/eucalyptusOil_1.jpg", "/images/eucalyptusOil_2.jpg"],
     featured: false,
     specifications: [
       { label: "Appearance", value: "Colorless to pale yellow liquid" },

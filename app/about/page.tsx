@@ -5,6 +5,9 @@ import { Sparkles, CheckCircle2 } from 'lucide-react';
 import { Metadata } from 'next';
 import aboutData from './about.json';
 import { FormattedText } from '@/components/shared/FormattedText';
+import { HeroBackground } from '@/components/shared/HeroBackground';
+import { HeroBadge } from '@/components/shared/HeroBadge';
+import { SectionLabel } from '@/components/shared/SectionLabel';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -25,24 +28,15 @@ const iconMap: Record<string, React.ElementType> = {
 export default function AboutPage() {
   return (
     <main className="pb-24">
-      <section className="relative isolate min-h-[calc(100vh-var(--kodai-header-height))] overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={aboutData.hero.imageSrc}
-            alt={aboutData.hero.imageAlt}
-            fill
-            className="object-cover object-center brightness-[0.94]"
-            priority
-          />
-        </div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(26,31,46,0.5)_0%,rgba(26,31,46,0)_40%),linear-gradient(to_right,rgba(26,31,46,0.75)_0%,rgba(26,31,46,0)_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(45,122,79,0.2),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.12),transparent_24%)]" />
+      <section className="relative isolate min-h-screen overflow-hidden">
+        <HeroBackground
+          src={aboutData.hero.imageSrc}
+          alt={aboutData.hero.imageAlt}
+        />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100vh-var(--kodai-header-height))] max-w-[85rem] flex-col justify-center px-4 py-16 sm:px-6 md:px-10 md:py-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center text-center md:items-start md:text-left px-4 pb-16 sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <div className="max-w-4xl">
-            <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-sm font-semibold tracking-[0.18em] text-kodai-green uppercase backdrop-blur-md">
-              {aboutData.hero.badge}
-            </span>
+            <HeroBadge>{aboutData.hero.badge}</HeroBadge>
             <h1 className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white sm:text-5xl md:text-7xl">
               <FormattedText text={aboutData.hero.title} />
             </h1>
@@ -55,17 +49,15 @@ export default function AboutPage() {
             {[
               aboutData.whyChooseUs.badges.tested,
               aboutData.whyChooseUs.badges.origin,
-              aboutData.cta.button,
             ].map((item, index) => (
               <div
                 key={item}
-                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${
-                  index === 2
-                    ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
-                    : 'border-white/15 bg-white/8 text-white/78'
-                }`}
+                className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold tracking-[0.08em] uppercase backdrop-blur-md ${index === 1
+                  ? 'border-kodai-green/30 bg-kodai-green/15 text-white shadow-[0_10px_30px_rgba(45,122,79,0.18)]'
+                  : 'border-white/15 bg-white/8 text-white/78'
+                  }`}
               >
-                <span className={`h-1.5 w-1.5 rounded-full ${index === 2 ? 'bg-kodai-green' : 'bg-white/55'}`} />
+                <span className={`h-1.5 w-1.5 rounded-full ${index === 1 ? 'bg-kodai-green' : 'bg-white/55'}`} />
                 <span>{item}</span>
               </div>
             ))}
@@ -77,9 +69,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-kodai-green">
-                {aboutData.whyChooseUs.title}
-              </span>
+              <SectionLabel>{aboutData.whyChooseUs.title}</SectionLabel>
               <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
                 Why we stand out
               </h2>
@@ -174,9 +164,7 @@ export default function AboutPage() {
 
       <section className="mx-auto mt-20 max-w-[85rem] px-4 sm:px-6 md:px-10">
         <div className="text-center">
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-kodai-green">
-            {aboutData.values.tagline}
-          </span>
+          <SectionLabel>{aboutData.values.tagline}</SectionLabel>
           <h2 className="mx-auto mt-4 max-w-4xl font-playfair text-4xl font-semibold text-kodai-dark sm:text-5xl">
             <FormattedText text={aboutData.values.title} />
           </h2>
@@ -185,7 +173,6 @@ export default function AboutPage() {
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {aboutData.values.items.map((value, index) => {
             const Icon = iconMap[value.icon] || Sparkles;
-
             return (
               <div
                 key={index}
@@ -195,12 +182,8 @@ export default function AboutPage() {
                   <Icon size={28} />
                 </div>
                 <h4 className="text-xl font-bold text-kodai-dark">{value.title}</h4>
-                <p className="mt-4 text-sm leading-7 text-gray-600">
-                  {value.description}
-                </p>
-                <p className="mt-4 text-xs font-medium leading-6 text-gray-400">
-                  {value.details}
-                </p>
+                <p className="mt-4 text-sm leading-7 text-gray-600">{value.description}</p>
+                <p className="mt-4 text-xs font-medium leading-6 text-gray-400">{value.details}</p>
               </div>
             );
           })}

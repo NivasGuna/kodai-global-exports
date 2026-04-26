@@ -4,8 +4,9 @@ import './globals.css';
 import { cn } from "@/lib/utils";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { Toaster } from '@/components/ui/sonner';
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const inter = Inter({
   subsets: ['latin'],
@@ -51,8 +52,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={cn("h-full", "antialiased", inter.variable, playfair.variable, "font-sans", geist.variable)}>
       <body className="min-h-screen flex flex-col font-sans text-kodai-dark" suppressHydrationWarning>
         <Navbar />
-        <main className="flex-1 pt-[var(--kodai-header-height)]">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   );

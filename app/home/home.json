@@ -1,10 +1,21 @@
 {
   "hero": {
-    "badge": "Structured Export Excellence",
-    "title": "Premium {Lemongrass Oil & Eucalyptus Oil} for Global Markets",
-    "subtitle": "Professionally managed export operations delivering high-quality Lemongrass Oil and Eucalyptus Oil with strong compliance, documentation, and dependable shipment execution.",
-    "imageSrc": "/images/about-hero.jpg",
-    "imageAlt": "Premium cultivation landscape"
+    "slides": [
+      {
+        "badge": "Pure Lemongrass Oil",
+        "title": "Steam-Distilled {Lemongrass Oil} from the Heart of India",
+        "subtitle": "Exceptionally high citral content (75–85%), cold-processed under controlled conditions. Trusted by international aromatherapy, cosmetic, and fragrance houses for its purity and consistency.",
+        "imageSrc": "/images/lemongrassOil.png",
+        "imageAlt": "Premium lemongrass cultivation fields"
+      },
+      {
+        "badge": "Export-Grade Eucalyptus Oil",
+        "title": "Therapeutic-Grade {Eucalyptus Oil} Built for Global Buyers",
+        "subtitle": "Rich in 1,8-Cineole (60–80%), processed from hand-picked leaves under strict quality protocols. Preferred by pharmaceutical and home care manufacturers across Europe and the Middle East.",
+        "imageSrc": "/images/eucalyptusOil.png",
+        "imageAlt": "Eucalyptus oil distillation process"
+      }
+    ]
   },
   "intro": {
     "tagline": "Who We Are",

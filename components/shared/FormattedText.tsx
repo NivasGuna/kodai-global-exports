@@ -10,7 +10,7 @@ interface FormattedTextProps {
  */
 export const FormattedText = ({ text }: FormattedTextProps) => {
   if (!text) return null;
-  
+
   const parts = text.split(/(\{.*?\})/g);
   return (
     <>
