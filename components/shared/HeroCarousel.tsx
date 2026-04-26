@@ -60,7 +60,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                 blur={true}
               />
 
-              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-center text-center px-4 pt-[calc(var(--kodai-header-height)+2rem)] md:items-start md:text-left sm:px-6 md:px-10 md:pt-0">
+              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-20 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:pb-32 sm:px-6 md:px-10 md:pt-0 md:pb-16">
                 <AnimatePresence mode="wait">
                   {current === index && (
                     <motion.div
@@ -83,7 +83,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.7 }}
-                        className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:text-5xl md:text-7xl hero-text-shadow"
+                        className="mt-4 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow"
                       >
                         <FormattedText text={slide.title} />
                       </motion.h1>
@@ -92,7 +92,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.7 }}
-                        className="mt-6 max-w-3xl text-base leading-8 text-white/90 sm:text-lg hero-text-shadow-sm"
+                        className="mt-4 max-w-3xl text-sm leading-7 text-white/90 sm:mt-6 sm:text-base sm:leading-8 md:text-lg hero-text-shadow-sm"
                       >
                         {slide.subtitle}
                       </motion.p>
@@ -101,7 +101,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.5, duration: 0.7 }}
-                        className="mt-10 flex flex-wrap gap-3"
+                        className="mt-6 flex flex-wrap gap-2.5 sm:mt-10 sm:gap-3"
                       >
                         {highlights.map((item, hIdx) => {
                           const Icon = introIcons[hIdx] || CheckCircle2;
@@ -125,7 +125,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
         </CarouselContent>
       </Carousel>
 
-      <div className="absolute bottom-12 left-0 right-0 z-20 flex justify-center gap-6">
+      <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center gap-6 sm:bottom-12">
         {slides.map((_, i) => (
           <button
             key={i}

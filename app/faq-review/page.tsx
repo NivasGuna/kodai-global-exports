@@ -25,16 +25,16 @@ export default function Page() {
           alt="FAQ Banner"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center md:items-start px-4 pt-[calc(var(--kodai-header-height)+2rem)] pb-12 sm:px-6 md:px-10 md:pt-36 md:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-12 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <HeroBadge>Help Center</HeroBadge>
-          <h1 className="mt-5 max-w-4xl font-playfair text-3xl font-semibold leading-tight text-white sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow">
+          <h1 className="mt-4 max-w-4xl font-playfair text-3xl font-semibold leading-tight text-white sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow">
             Frequently Asked <span className="text-kodai-green">Questions</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/85 sm:mt-6 sm:text-lg sm:leading-8 hero-text-shadow-sm">
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/85 sm:mt-6 sm:text-base sm:leading-8 md:text-lg hero-text-shadow-sm">
             Everything you need to know about our premium essential oils, sourcing process, and global export standards.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
+          <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-10 sm:gap-3">
             {['Premium Quality', 'Global Logistics'].map((item) => (
               <div
                 key={item}

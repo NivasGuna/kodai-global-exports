@@ -95,18 +95,18 @@ export default function ContactPage() {
           alt="Contact Us Banner"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-center text-center md:items-start md:text-left px-4 pt-[calc(var(--kodai-header-height)+2rem)] pb-16 sm:px-6 md:px-10 md:pt-36 md:pb-20">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-12 sm:pb-16 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <div className="max-w-3xl">
             <HeroBadge>{contactContent.hero.badge}</HeroBadge>
-            <h1 className="mt-6 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:text-5xl md:text-7xl hero-text-shadow">
+            <h1 className="mt-4 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow">
               {contactContent.hero.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/90 sm:text-lg hero-text-shadow-sm">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/90 sm:mt-6 sm:text-base sm:leading-8 md:text-lg hero-text-shadow-sm">
               {contactContent.hero.subtitle}
             </p>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-10 sm:gap-3">
             {[
               'Premium product inquiries',
               'Direct export support',
