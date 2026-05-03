@@ -6,11 +6,18 @@ import homeContent from './home.json';
 import { FormattedText } from '@/components/shared/FormattedText';
 import { HeroCarousel } from '@/components/shared/HeroCarousel';
 import { SectionLabel } from '@/components/shared/SectionLabel';
+import { FadeIn } from '@/components/shared/FadeIn';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Kodai Global Exports | Premium Essential Oils & Natural Extracts from India',
   description:
-    'Kodai Global Exports is a professionally managed essential oil export company serving Indian and international markets with structured quality and compliance.',
+    'Kodai Global Exports is a leading essential oil export company from India offering premium steam-distilled Lemongrass Oil and Eucalyptus Oil to global markets. FSSAI certified, APEDA registered.',
+  keywords: ['essential oils India', 'lemongrass oil exporter', 'eucalyptus oil supplier', 'premium essential oils', 'natural extracts export', 'Kodai Global Exports'],
+  openGraph: {
+    title: 'Kodai Global Exports | Premium Essential Oils from India',
+    description: 'Leading exporter of premium Lemongrass Oil & Eucalyptus Oil. FSSAI certified, APEDA registered.',
+    type: 'website',
+  },
 };
 
 const introIcons = [CheckCircle2, FileCheck2, ShieldCheck];
@@ -24,47 +31,60 @@ export default function HomePage() {
       />
 
       <section className="mx-auto mt-12 max-w-[85rem] px-4 sm:px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
+          <FadeIn direction="right" className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)] lg:aspect-auto lg:h-[650px]">
+            <Image
+              src="/images/whoWeAre-banner.jpeg"
+              alt="Kodai Global Exports - Who We Are"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </FadeIn>
+
           <div className="space-y-7">
-            <div>
+            <FadeIn delay={0.2}>
               <SectionLabel>{homeContent.intro.tagline}</SectionLabel>
               <h2 className="mt-3 max-w-4xl font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
                 <FormattedText text={homeContent.intro.title} />
               </h2>
-            </div>
+            </FadeIn>
 
             <div className="space-y-5 text-base leading-8 text-gray-600 sm:text-lg">
-              {homeContent.intro.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+              {homeContent.intro.paragraphs.map((paragraph, idx) => (
+                <FadeIn key={paragraph} delay={0.3 + idx * 0.1}>
+                  <p>{paragraph}</p>
+                </FadeIn>
               ))}
             </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 gap-5">
-            {homeContent.intro.highlights.map((item, index) => {
-              const Icon = introIcons[index] || CheckCircle2;
-              return (
-                <div
-                  key={item}
-                  className="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-[0_16px_48px_rgba(26,31,46,0.06)] backdrop-blur-xl"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green">
-                    <Icon size={22} />
-                  </div>
-                  <h3 className="mt-5 text-xl font-semibold text-kodai-dark">{item}</h3>
-                  <p className="mt-3 text-sm leading-7 text-gray-500">
-                    Structured processes, documentation, and quality control built for dependable export partnerships.
-                  </p>
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {homeContent.intro.highlights.map((item, index) => {
+            const Icon = introIcons[index] || CheckCircle2;
+            return (
+              <FadeIn
+                key={item}
+                delay={index * 0.1}
+                className="rounded-[2rem] border border-white/70 bg-white/85 p-6 shadow-[0_16px_48px_rgba(26,31,46,0.06)] backdrop-blur-xl transition-transform hover:-translate-y-1"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green">
+                  <Icon size={22} />
                 </div>
-              );
-            })}
-          </div>
+                <h3 className="mt-5 text-xl font-semibold text-kodai-dark">{item}</h3>
+                <p className="mt-3 text-sm leading-7 text-gray-500">
+                  Structured processes, documentation, and quality control built for dependable export partnerships.
+                </p>
+              </FadeIn>
+            );
+          })}
         </div>
       </section>
 
       <section className="mx-auto mt-20 max-w-[85rem] px-4 sm:px-6 md:px-10">
         <div className="rounded-[3rem] border border-white/70 bg-white/85 p-6 shadow-[0_24px_80px_rgba(26,31,46,0.08)] backdrop-blur-xl sm:p-8 md:p-10">
-          <div className="max-w-3xl">
+          <FadeIn className="max-w-3xl">
             <SectionLabel>{homeContent.markets.tagline}</SectionLabel>
             <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
               <FormattedText text={homeContent.markets.title} />
@@ -72,9 +92,9 @@ export default function HomePage() {
             <p className="mt-4 text-base leading-8 text-gray-600 sm:text-lg">
               {homeContent.markets.description}
             </p>
-          </div>
+          </FadeIn>
 
-          <div className="mt-10 mb-10 overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)]">
+          <FadeIn delay={0.2} className="mt-10 mb-10 overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)]">
             <Image
               src="/images/global_markets_map.png"
               alt="Global markets highlighted on world map: Germany, France, Kuwait, Saudi Arabia, UAE, Bangladesh, South Africa"
@@ -83,7 +103,7 @@ export default function HomePage() {
               sizes="100vw"
               className="h-auto w-full object-cover"
             />
-          </div>
+          </FadeIn>
 
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:flex lg:flex-wrap">
             {homeContent.markets.countries.map((country) => (

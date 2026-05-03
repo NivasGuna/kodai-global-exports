@@ -14,14 +14,14 @@ import * as React from 'react';
 interface ContactEmailProps {
   name: string;
   email: string;
-  subject: string;
+  country: string;
   message: string;
 }
 
 export const ContactEmail = ({
   name,
   email,
-  subject,
+  country,
   message,
 }: ContactEmailProps) => (
   <Html>
@@ -40,7 +40,7 @@ export const ContactEmail = ({
             <strong>Email:</strong> {email}
           </Text>
           <Text style={text}>
-            <strong>Subject:</strong> {subject}
+            <strong>Country:</strong> {country}
           </Text>
           <Hr style={hr} />
           <Text style={textBold}>Message:</Text>

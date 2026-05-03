@@ -1,11 +1,28 @@
 {
   "hero": {
+    "slides": [
+      {
+        "badge": "Premium Quality",
+        "title": "Pure {Lemongrass} Essential Oil",
+        "subtitle": "Refresh. Revive. Rejuvenate. Our 100% pure steam-distilled lemongrass oil meets the highest global export standards.",
+        "imageSrc": "/images/product-carousel-1.png",
+        "imageAlt": "Pure Lemongrass Essential Oil Banner"
+      },
+      {
+        "badge": "Export Grade",
+        "title": "Therapeutic {Eucalyptus} Oil",
+        "subtitle": "100% Pure & Natural. Steam-distilled to preserve high Cineole content, perfect for pharmaceutical and wellness use.",
+        "imageSrc": "/images/product-carousel-2.png",
+        "imageAlt": "Premium Eucalyptus Oil"
+      }
+    ],
     "badge": "Our Products",
     "title": "Premium oil products built for {reliable exports}",
-    "subtitle": "Our current range includes export-grade Lemongrass Oil and Eucalyptus Oil, prepared to support quality-focused buyers across Indian and international markets.",
+    "subtitle": "Export-grade Lemongrass and Eucalyptus Oils, prepared for quality-focused buyers in Indian and international markets.",
     "features": [
-      "Lemongrass Oil",
-      "Eucalyptus Oil"
+      "100% Pure & Natural",
+      "Steam Distilled",
+      "Premium Quality"
     ]
   },
   "range": {
@@ -28,5 +45,12 @@
   "soon": {
     "title": "More products coming soon",
     "description": "We are expanding our portfolio with additional essential oils and natural extracts while keeping the same quality-focused export process."
+  },
+  "ui": {
+    "moreDetails": "More Details",
+    "selected": "Selected",
+    "premiumGrade": "Premium Grade",
+    "specifications": "Specifications",
+    "applications": "Applications"
   }
 }

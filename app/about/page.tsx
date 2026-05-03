@@ -8,10 +8,17 @@ import { FormattedText } from '@/components/shared/FormattedText';
 import { HeroBackground } from '@/components/shared/HeroBackground';
 import { HeroBadge } from '@/components/shared/HeroBadge';
 import { SectionLabel } from '@/components/shared/SectionLabel';
+import { FadeIn } from '@/components/shared/FadeIn';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about Kodai Global Exports - our structured approach to quality essential oils, our mission, vision, and core values.',
+  title: 'About Us | Kodai Global Exports',
+  description: 'Kodai Global Exports is a professionally managed essential oil export company from India specializing in premium Lemongrass Oil and Eucalyptus Oil. FSSAI certified, APEDA registered, serving 7+ global markets.',
+  keywords: ['about Kodai Global Exports', 'essential oil company India', 'premium oil exporter', 'lemongrass oil manufacturer', 'FSSAI certified essential oils'],
+  openGraph: {
+    title: 'About Us | Kodai Global Exports',
+    description: 'A professionally managed essential oil export company delivering premium oils to global markets.',
+    type: 'website',
+  },
 };
 
 const iconMap: Record<string, React.ElementType> = {
@@ -34,13 +41,16 @@ export default function AboutPage() {
           alt={aboutData.hero.imageAlt}
         />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-12 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:px-6 md:px-10 md:pt-36 md:pb-20">
-          <div className="max-w-4xl">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
+          <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
             <HeroBadge>{aboutData.hero.badge}</HeroBadge>
-            <h1 className="mt-4 font-playfair text-4xl font-semibold leading-tight text-white sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow">
-              <FormattedText text={aboutData.hero.title} />
+            <h1 className="mt-5 font-playfair text-3xl font-medium leading-[1.2] text-white sm:mt-6 sm:text-4xl lg:text-5xl xl:text-[3.5rem] tracking-wide hero-text-shadow">
+              <FormattedText
+                text={aboutData.hero.title}
+                highlightClassName="font-semibold text-white"
+              />
             </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-white/85 sm:mt-6 sm:text-base sm:leading-8 md:text-lg hero-text-shadow-sm">
+            <p className="mt-5 text-base leading-relaxed text-white/95 sm:mt-6 sm:text-xl sm:leading-9 hero-text-shadow-sm font-light tracking-wide">
               {aboutData.hero.subtitle}
             </p>
           </div>
@@ -61,16 +71,15 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <section className="mx-auto mt-12 max-w-[85rem] px-4 sm:px-6 md:px-10">
+      <section className="mx-auto mt-12 max-w-[85rem] px-4 sm:px-6 md:px-10" id="about-why-choose">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-8">
-            <div>
+            <FadeIn>
               <SectionLabel>{aboutData.whyChooseUs.title}</SectionLabel>
               <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
                 Why we stand out
               </h2>
-            </div>
+            </FadeIn>
 
             <div className="space-y-5 text-base leading-8 text-gray-600 sm:text-lg">
               <p><FormattedText text={aboutData.whyChooseUs.description} /></p>
@@ -81,23 +90,23 @@ export default function AboutPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]">
+              <FadeIn delay={0.3} className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green">
                   <CheckCircle2 size={20} />
                 </div>
                 <span className="font-semibold text-kodai-dark">{aboutData.whyChooseUs.badges.tested}</span>
-              </div>
-              <div className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]">
+              </FadeIn>
+              <FadeIn delay={0.4} className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]">
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green">
                   <CheckCircle2 size={20} />
                 </div>
                 <span className="font-semibold text-kodai-dark">{aboutData.whyChooseUs.badges.origin}</span>
-              </div>
+              </FadeIn>
             </div>
           </div>
 
           <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
+            <FadeIn direction="left" className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
               <Image
                 src={aboutData.whyChooseUs.imageSrc}
                 alt={aboutData.whyChooseUs.imageAlt}
@@ -106,9 +115,7 @@ export default function AboutPage() {
                 className="object-cover"
                 priority
               />
-            </div>
-            <div className="absolute -bottom-8 -left-8 h-64 w-64 rounded-full bg-kodai-green/10 blur-3xl" />
-            <div className="absolute -top-12 -right-12 h-48 w-48 rounded-full bg-emerald-100 blur-2xl" />
+            </FadeIn>
 
             <div className="absolute top-1/2 -right-8 hidden -translate-y-1/2 rounded-3xl border border-white/70 bg-white p-6 shadow-xl md:block">
               <p className="mb-1 text-4xl font-bold text-kodai-green">{aboutData.whyChooseUs.stat.value}</p>
@@ -132,7 +139,7 @@ export default function AboutPage() {
           </div>
 
           <div className="relative z-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="rounded-[2.25rem] border border-kodai-green/10 bg-kodai-green/5 p-8 text-center">
+            <FadeIn direction="right" className="rounded-[2.25rem] border border-kodai-green/10 bg-kodai-green/5 p-8 text-center">
               <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-kodai-green text-white shadow-lg shadow-kodai-green/20">
                 <iconMap.Target size={34} />
               </div>
@@ -142,9 +149,9 @@ export default function AboutPage() {
               <p className="mt-5 text-base leading-8 text-gray-600">
                 {aboutData.missionVision.mission.description}
               </p>
-            </div>
+            </FadeIn>
 
-            <div className="rounded-[2.25rem] bg-kodai-dark p-8 text-center text-white shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
+            <FadeIn direction="left" className="rounded-[2.25rem] bg-kodai-dark p-8 text-center text-white shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
               <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-kodai-green text-white shadow-lg shadow-kodai-green/20">
                 <iconMap.Eye size={34} />
               </div>
@@ -154,12 +161,12 @@ export default function AboutPage() {
               <p className="mt-5 text-base leading-8 text-white/75">
                 {aboutData.missionVision.vision.description}
               </p>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto mt-20 max-w-[85rem] px-4 sm:px-6 md:px-10">
+      <section className="mx-auto mt-20 max-w-[85rem] px-4 sm:px-6 md:px-10" id="about-values">
         <div className="text-center">
           <SectionLabel>{aboutData.values.tagline}</SectionLabel>
           <h2 className="mx-auto mt-4 max-w-4xl font-playfair text-4xl font-semibold text-kodai-dark sm:text-5xl">
@@ -226,6 +233,7 @@ export default function AboutPage() {
           <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-black/10 blur-3xl" />
         </div>
       </section>
+
     </main>
   );
 }

@@ -12,7 +12,8 @@ import { HeroBadge } from './HeroBadge';
 import { FormattedText } from './FormattedText';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, FileCheck2, ShieldCheck, LucideIcon } from 'lucide-react';
+import { CheckCircle2, FileCheck2, ShieldCheck, LucideIcon, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface Slide {
   badge: string;
@@ -20,6 +21,10 @@ interface Slide {
   subtitle: string;
   imageSrc: string;
   imageAlt: string;
+  cta?: {
+    label: string;
+    href: string;
+  };
 }
 
 interface HeroCarouselProps {
@@ -57,10 +62,10 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                 src={slide.imageSrc}
                 alt={slide.imageAlt}
                 priority={index === 0}
-                blur={true}
+                imageClassName="object-[85%_center] sm:object-[75%_center] lg:object-center"
               />
 
-              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-20 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:pb-32 sm:px-6 md:px-10 md:pt-36 md:pb-20">
+              <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
                 <AnimatePresence mode="wait">
                   {current === index && (
                     <motion.div
@@ -69,7 +74,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 30 }}
                       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                      className="max-w-5xl"
+                      className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]"
                     >
                       <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -83,16 +88,19 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.7 }}
-                        className="mt-4 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow"
+                        className="mt-5 font-playfair text-3xl font-medium leading-[1.2] text-white sm:mt-6 sm:text-4xl lg:text-5xl xl:text-[3.5rem] tracking-wide hero-text-shadow"
                       >
-                        <FormattedText text={slide.title} />
+                        <FormattedText
+                          text={slide.title}
+                          highlightClassName="font-semibold text-white"
+                        />
                       </motion.h1>
 
                       <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.7 }}
-                        className="mt-4 max-w-3xl text-sm leading-7 text-white/90 sm:mt-6 sm:text-base sm:leading-8 md:text-lg hero-text-shadow-sm"
+                        className="mt-5 text-base leading-relaxed text-white/95 sm:mt-6 sm:text-xl sm:leading-9 hero-text-shadow-sm font-light tracking-wide"
                       >
                         {slide.subtitle}
                       </motion.p>
@@ -116,6 +124,25 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                           );
                         })}
                       </motion.div>
+
+                      {slide.cta && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.6, duration: 0.7 }}
+                          className="mt-8 sm:mt-12"
+                        >
+                          <Link
+                            href={slide.cta.href}
+                            className="group/btn relative inline-flex items-center gap-4 rounded-2xl bg-kodai-green px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white shadow-[0_20px_50px_rgba(45,122,79,0.3)] transition-all hover:-translate-y-1 hover:bg-kodai-green-dark hover:shadow-[0_25px_60px_rgba(45,122,79,0.4)] sm:px-10 sm:py-5"
+                          >
+                            <span>{slide.cta.label}</span>
+                            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/20 transition-all group-hover/btn:rotate-[360deg] group-hover/btn:bg-white/30">
+                              <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-0.5" />
+                            </div>
+                          </Link>
+                        </motion.div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>

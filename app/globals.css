@@ -51,11 +51,11 @@ html {
 
 /* ─── Hero text shadow utility for readability on vivid images ─── */
 .hero-text-shadow {
-  text-shadow: 0 2px 14px rgba(0,0,0,0.7), 0 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .hero-text-shadow-sm {
-  text-shadow: 0 1px 6px rgba(0,0,0,0.3), 0 1px 1px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
 }
 
 /* ─── Scroll-margin for product cards (no :target outline to avoid stale highlights) ─── */

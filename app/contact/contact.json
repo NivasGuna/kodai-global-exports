@@ -2,7 +2,7 @@
   "hero": {
     "badge": "Get in Touch",
     "title": "Let's Connect and Grow Together",
-    "subtitle": "Have questions about our premium essential oils or export processes? Our team is here to help you scale your business."
+    "subtitle": "Have questions about our premium oils or export processes? Our team is here to support your business growth."
   },
   "form": {
     "title": "Send us a Message",
@@ -24,11 +24,11 @@
           "invalid": "Please provide a valid email format."
         }
       },
-      "subject": {
-        "label": "Subject",
-        "placeholder": "How can we help?",
+      "country": {
+        "label": "Country",
+        "placeholder": "United States",
         "error": {
-          "required": "Subject is required."
+          "required": "Country is required."
         }
       },
       "message": {

@@ -2,17 +2,24 @@
   "hero": {
     "slides": [
       {
+        "badge": "Premium Essential Oils",
+        "title": "Your Trusted Global Partner for {Pure Natural Extracts}",
+        "subtitle": "Discover our comprehensive range of premium-grade Lemongrass and Eucalyptus oils, processed with precision for international markets.",
+        "imageSrc": "/images/product-all-carousel.png",
+        "imageAlt": "Collection of Kodai Global Exports premium essential oils"
+      },
+      {
         "badge": "Pure Lemongrass Oil",
         "title": "Steam-Distilled {Lemongrass Oil} from the Heart of India",
-        "subtitle": "Exceptionally high citral content (75–85%), cold-processed under controlled conditions. Trusted by international aromatherapy, cosmetic, and fragrance houses for its purity and consistency.",
-        "imageSrc": "/images/lemongrassOil.png",
+        "subtitle": "High-citral (75–85%) Lemongrass Oil, steam-distilled under controlled conditions for unmatched purity and export quality.",
+        "imageSrc": "/images/home-carousel-1.png",
         "imageAlt": "Premium lemongrass cultivation fields"
       },
       {
         "badge": "Export-Grade Eucalyptus Oil",
         "title": "Therapeutic-Grade {Eucalyptus Oil} Built for Global Buyers",
-        "subtitle": "Rich in 1,8-Cineole (60–80%), processed from hand-picked leaves under strict quality protocols. Preferred by pharmaceutical and home care manufacturers across Europe and the Middle East.",
-        "imageSrc": "/images/eucalyptusOil.png",
+        "subtitle": "Premium 1,8-Cineole (60–80%) Eucalyptus Oil, steam-distilled from hand-picked leaves for global pharmaceutical standards.",
+        "imageSrc": "/images/home-carousel-2.png",
         "imageAlt": "Eucalyptus oil distillation process"
       }
     ]

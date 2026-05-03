@@ -9,17 +9,18 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendContactEmail(formData: {
   name: string;
   email: string;
-  subject: string;
+  country: string;
   message: string;
 }) {
   try {
-    const { name, email, subject, message } = formData;
+    const { name, email, country, message } = formData;
+    const defaultSubject = `New Inquiry from ${name} (${country})`;
 
     const { data, error } = await resend.emails.send({
       from: 'Kodai Global Exports <onboarding@resend.dev>', // Update this with your verified domain in Resend
       to: ['nivasguna26@gmail.com'],
-      subject: `${subject}`,
-      react: <ContactEmail name={name} email={email} subject={subject} message={message} />,
+      subject: defaultSubject,
+      react: <ContactEmail name={name} email={email} country={country} message={message} />,
     });
 
     if (error) {

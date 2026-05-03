@@ -112,8 +112,10 @@ export default function Navbar() {
       e.preventDefault();
       if (hash) {
         window.history.replaceState(null, '', `${basePath}#${hash}`);
-        window.dispatchEvent(new HashChangeEvent('hashchange'));
+        window.dispatchEvent(new Event('hashchange'));
       } else {
+        window.history.replaceState(null, '', basePath);
+        window.dispatchEvent(new Event('hashchange'));
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       setActiveMenu(undefined);
@@ -302,26 +304,35 @@ export default function Navbar() {
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.06] px-4 py-3">
               <Link
                 href="/products"
-                onClick={() => setMenuOpen(false)}
+                onClick={(e) => handleProductClick(e, '/products')}
                 className="block text-sm font-semibold uppercase tracking-[0.12em] text-white"
               >
                 {navbarContent.productsMenu.title}
               </Link>
               <div className="mt-3 rounded-xl border border-white/[0.06] bg-white/[0.04] p-3">
-                <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-kodai-green">
-                  {navbarContent.productsMenu.categoryTitle}
-                </p>
-                <div className="mt-2 space-y-1">
-                  {navbarContent.productLinks.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={(e) => handleProductClick(e, item.href)}
-                      className="block rounded-xl px-3 py-2 text-sm font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+                <Link
+                  href="/products"
+                  onClick={(e) => handleProductClick(e, '/products')}
+                  className="block text-[11px] font-bold uppercase tracking-[0.22em] text-kodai-green hover:text-white transition-colors"
+                >
+                  {navbarContent.productsMenu.viewAll}
+                </Link>
+                <div className="mt-4 space-y-1">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-2">
+                    {navbarContent.productsMenu.categoryTitle}
+                  </p>
+                  <div className="mt-2 space-y-1">
+                    {navbarContent.productLinks.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => handleProductClick(e, item.href)}
+                        className="block rounded-xl px-3 py-2 text-sm font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

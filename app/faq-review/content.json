@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "badge": "Help Center",
+    "title": "Frequently Asked {Questions}",
+    "subtitle": "Everything you need to know about our premium oils, sourcing process, and global export standards.",
+    "highlights": [
+      "Premium Quality",
+      "Global Logistics"
+    ]
+  },
+  "contact": {
+    "tagline": "Still need help?",
+    "title": "Talk to our export team",
+    "description": "Can't find what you're looking for? Reach out for product guidance, documentation support, and export clarifications.",
+    "buttonText": "Contact Support"
+  },
+  "faq": {
+    "tagline": "FAQ",
+    "title": "Questions we hear most often"
+  },
+  "reviews": {
+    "tagline": "Real Experiences",
+    "title": "Trusted by {Global Partners}"
+  }
+}

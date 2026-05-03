@@ -11,13 +11,14 @@ import contactContent from './contact.json';
 import { Label } from '@/components/ui/label';
 import { HeroBackground } from '@/components/shared/HeroBackground';
 import { HeroBadge } from '@/components/shared/HeroBadge';
+import { FadeIn } from '@/components/shared/FadeIn';
 import { sendContactEmail } from './actions';
 import { toast } from 'sonner';
 
 type FormValues = {
   name: string;
   email: string;
-  subject: string;
+  country: string;
   message: string;
   robot: boolean;
 };
@@ -48,7 +49,7 @@ export default function ContactPage() {
     defaultValues: {
       name: '',
       email: '',
-      subject: '',
+      country: '',
       message: '',
       robot: false,
     },
@@ -65,7 +66,7 @@ export default function ContactPage() {
       const result = await sendContactEmail({
         name: data.name,
         email: data.email,
-        subject: data.subject,
+        country: data.country,
         message: data.message,
       });
 
@@ -74,7 +75,7 @@ export default function ContactPage() {
         toast.success('Message sent successfully! We will get back to you soon.');
         setTimeout(() => {
           setFormStatus('idle');
-          reset({ name: '', email: '', subject: '', message: '', robot: false });
+          reset({ name: '', email: '', country: '', message: '', robot: false });
           clearErrors();
         }, 3000);
       } else {
@@ -91,17 +92,17 @@ export default function ContactPage() {
     <main className="pb-24">
       <section className="relative isolate min-h-screen overflow-hidden">
         <HeroBackground
-          src="/images/contact-hero-banner.jpeg"
+          src="/images/contact-hero-banner.png"
           alt="Contact Us Banner"
         />
 
-        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-12 sm:pb-16 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:px-6 md:px-10 md:pt-36 md:pb-20">
-          <div className="max-w-3xl">
+        <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
+          <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
             <HeroBadge>{contactContent.hero.badge}</HeroBadge>
-            <h1 className="mt-4 font-playfair text-4xl font-semibold leading-tight text-white/95 sm:mt-6 sm:text-5xl md:text-7xl hero-text-shadow">
+            <h1 className="mt-5 font-playfair text-3xl font-medium leading-[1.2] text-white sm:mt-6 sm:text-4xl lg:text-5xl xl:text-[3.5rem] tracking-wide hero-text-shadow">
               {contactContent.hero.title}
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/90 sm:mt-6 sm:text-base sm:leading-8 md:text-lg hero-text-shadow-sm">
+            <p className="mt-5 text-base leading-relaxed text-white/95 sm:mt-6 sm:text-xl sm:leading-9 hero-text-shadow-sm font-light tracking-wide">
               {contactContent.hero.subtitle}
             </p>
           </div>
@@ -126,21 +127,22 @@ export default function ContactPage() {
       <div className="mx-auto mt-12 max-w-[85rem] px-4 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[0.92fr_1.08fr]">
           <div className="space-y-8">
-            <div>
+            <FadeIn>
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-kodai-green">
                 {contactContent.info.title}
               </span>
               <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
                 Reach us directly
               </h2>
-            </div>
+            </FadeIn>
 
             <div className="space-y-4">
               {contactContent.info.items.map((item, index) => {
                 const IconComponent = iconMap[item.icon] || Mail;
                 return (
-                  <div
+                  <FadeIn
                     key={index}
+                    delay={index * 0.1}
                     className="group rounded-[1.75rem] border border-white/70 bg-white/80 p-5 shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-kodai-green/20 hover:shadow-[0_18px_50px_rgba(45,122,79,0.08)]"
                   >
                     <div className="flex items-start gap-4">
@@ -152,11 +154,11 @@ export default function ContactPage() {
                           {item.label}
                         </p>
                         <p className="mt-2 whitespace-pre-line text-base font-medium leading-7 text-kodai-dark">
-                          {item.value}
+                           {item.value}
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </FadeIn>
                 );
               })}
             </div>
@@ -176,14 +178,14 @@ export default function ContactPage() {
 
           <div>
             <div className="rounded-[2.5rem] border border-white/70 bg-white/85 p-6 shadow-[0_24px_80px_rgba(26,31,46,0.08)] backdrop-blur-xl sm:p-8 md:p-10">
-              <div className="mb-8">
+              <FadeIn delay={0.2} className="mb-8">
                 <h2 className="font-playfair text-3xl font-semibold text-kodai-dark">
                   {contactContent.form.title}
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-7 text-gray-500 sm:text-base">
                   {contactContent.form.description}
                 </p>
-              </div>
+              </FadeIn>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -212,11 +214,11 @@ export default function ContactPage() {
 
                 <div className="grid grid-cols-1 gap-6">
                   <FormInput
-                    label={contactContent.form.fields.subject.label}
-                    placeholder={contactContent.form.fields.subject.placeholder}
+                    label={contactContent.form.fields.country.label}
+                    placeholder={contactContent.form.fields.country.placeholder}
                     required
-                    registration={register('subject', { required: contactContent.form.fields.subject.error.required })}
-                    error={errors.subject?.message as string}
+                    registration={register('country', { required: contactContent.form.fields.country.error.required })}
+                    error={errors.country?.message as string}
                   />
                   <FormTextarea
                     rows={5}
