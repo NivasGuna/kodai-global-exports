@@ -10,16 +10,7 @@ import { HeroBadge } from '@/components/shared/HeroBadge';
 import { SectionLabel } from '@/components/shared/SectionLabel';
 import { FadeIn } from '@/components/shared/FadeIn';
 
-export const metadata: Metadata = {
-  title: 'About Us | Kodai Global Exports',
-  description: 'Kodai Global Exports is a professionally managed essential oil export company from India specializing in premium Lemongrass Oil and Eucalyptus Oil. FSSAI certified, APEDA registered, serving 7+ global markets.',
-  keywords: ['about Kodai Global Exports', 'essential oil company India', 'premium oil exporter', 'lemongrass oil manufacturer', 'FSSAI certified essential oils'],
-  openGraph: {
-    title: 'About Us | Kodai Global Exports',
-    description: 'A professionally managed essential oil export company delivering premium oils to global markets.',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = aboutData.metadata;
 
 const iconMap: Record<string, React.ElementType> = {
   Award: LucideIcons.Award,
@@ -36,10 +27,7 @@ export default function AboutPage() {
   return (
     <main className="pb-24 overflow-x-hidden">
       <section className="relative isolate min-h-screen overflow-hidden">
-        <HeroBackground
-          src={aboutData.hero.imageSrc}
-          alt={aboutData.hero.imageAlt}
-        />
+        <HeroBackground src={aboutData.hero.imageSrc} alt={aboutData.hero.imageAlt} />
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
           <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
@@ -56,18 +44,17 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-10 sm:gap-3">
-            {[
-              aboutData.whyChooseUs.badges.tested,
-              aboutData.whyChooseUs.badges.origin,
-            ].map((item) => (
-              <div
-                key={item}
-                className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase text-kodai-green shadow-xl shadow-black/10 backdrop-blur-sm transition-transform hover:scale-105"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.4)]" />
-                <span>{item}</span>
-              </div>
-            ))}
+            {[aboutData.whyChooseUs.badges.tested, aboutData.whyChooseUs.badges.origin].map(
+              (item) => (
+                <div
+                  key={item}
+                  className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase text-kodai-green shadow-xl shadow-black/10 backdrop-blur-sm transition-transform hover:scale-105"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.4)]" />
+                  <span>{item}</span>
+                </div>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -77,12 +64,14 @@ export default function AboutPage() {
             <FadeIn>
               <SectionLabel>{aboutData.whyChooseUs.title}</SectionLabel>
               <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
-                Why we stand out
+                {aboutData.whyChooseUs.subtitle}
               </h2>
             </FadeIn>
 
             <div className="space-y-5 text-base leading-8 text-gray-600 sm:text-lg">
-              <p><FormattedText text={aboutData.whyChooseUs.description} /></p>
+              <p>
+                <FormattedText text={aboutData.whyChooseUs.description} />
+              </p>
               <p>{aboutData.whyChooseUs.subDescription}</p>
               <div className="rounded-[1.75rem] border border-kodai-green/10 bg-kodai-green/5 p-6 text-kodai-dark">
                 {aboutData.whyChooseUs.quote}
@@ -90,23 +79,36 @@ export default function AboutPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <FadeIn delay={0.3} className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]">
+              <FadeIn
+                delay={0.3}
+                className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]"
+              >
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green">
                   <CheckCircle2 size={20} />
                 </div>
-                <span className="font-semibold text-kodai-dark">{aboutData.whyChooseUs.badges.tested}</span>
+                <span className="font-semibold text-kodai-dark">
+                  {aboutData.whyChooseUs.badges.tested}
+                </span>
               </FadeIn>
-              <FadeIn delay={0.4} className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]">
+              <FadeIn
+                delay={0.4}
+                className="flex items-center gap-3 rounded-2xl border border-white/70 bg-white/80 p-4 shadow-[0_12px_40px_rgba(26,31,46,0.05)]"
+              >
                 <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green">
                   <CheckCircle2 size={20} />
                 </div>
-                <span className="font-semibold text-kodai-dark">{aboutData.whyChooseUs.badges.origin}</span>
+                <span className="font-semibold text-kodai-dark">
+                  {aboutData.whyChooseUs.badges.origin}
+                </span>
               </FadeIn>
             </div>
           </div>
 
           <div className="relative">
-            <FadeIn direction="left" className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
+            <FadeIn
+              direction="left"
+              className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_24px_80px_rgba(26,31,46,0.12)]"
+            >
               <Image
                 src={aboutData.whyChooseUs.imageSrc}
                 alt={aboutData.whyChooseUs.imageAlt}
@@ -118,8 +120,12 @@ export default function AboutPage() {
             </FadeIn>
 
             <div className="absolute top-1/2 -right-8 hidden -translate-y-1/2 rounded-3xl border border-white/70 bg-white p-6 shadow-xl md:block">
-              <p className="mb-1 text-4xl font-bold text-kodai-green">{aboutData.whyChooseUs.stat.value}</p>
-              <p className="whitespace-nowrap font-medium text-gray-500">{aboutData.whyChooseUs.stat.label}</p>
+              <p className="mb-1 text-4xl font-bold text-kodai-green">
+                {aboutData.whyChooseUs.stat.value}
+              </p>
+              <p className="whitespace-nowrap font-medium text-gray-500">
+                {aboutData.whyChooseUs.stat.label}
+              </p>
             </div>
           </div>
         </div>
@@ -139,7 +145,10 @@ export default function AboutPage() {
           </div>
 
           <div className="relative z-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-            <FadeIn direction="right" className="rounded-[2.25rem] border border-kodai-green/10 bg-kodai-green/5 p-8 text-center">
+            <FadeIn
+              direction="right"
+              className="rounded-[2.25rem] border border-kodai-green/10 bg-kodai-green/5 p-8 text-center"
+            >
               <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-kodai-green text-white shadow-lg shadow-kodai-green/20">
                 <iconMap.Target size={34} />
               </div>
@@ -151,7 +160,10 @@ export default function AboutPage() {
               </p>
             </FadeIn>
 
-            <FadeIn direction="left" className="rounded-[2.25rem] bg-kodai-dark p-8 text-center text-white shadow-[0_24px_80px_rgba(26,31,46,0.12)]">
+            <FadeIn
+              direction="left"
+              className="rounded-[2.25rem] bg-kodai-dark p-8 text-center text-white shadow-[0_24px_80px_rgba(26,31,46,0.12)]"
+            >
               <div className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-3xl bg-kodai-green text-white shadow-lg shadow-kodai-green/20">
                 <iconMap.Eye size={34} />
               </div>
@@ -233,7 +245,6 @@ export default function AboutPage() {
           <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-black/10 blur-3xl" />
         </div>
       </section>
-
     </main>
   );
 }

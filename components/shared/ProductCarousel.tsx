@@ -2,13 +2,9 @@
 
 import * as React from 'react';
 import Image from 'next/image';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
+import { useCarousel } from './hooks/useCarousel';
 
 interface ProductCarouselProps {
   images: string[];
@@ -16,26 +12,7 @@ interface ProductCarouselProps {
 }
 
 export function ProductCarousel({ images, name }: ProductCarouselProps) {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!api) return;
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-
-    api.on('select', () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-
-    const interval = setInterval(() => {
-      api.scrollNext();
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [api]);
+  const { api, setApi, current, count } = useCarousel(3000);
 
   return (
     <div className="relative h-full w-full group/carousel">
@@ -62,10 +39,10 @@ export function ProductCarousel({ images, name }: ProductCarouselProps) {
               key={i}
               onClick={() => api?.scrollTo(i)}
               className={cn(
-                "h-1.5 w-1.5 rounded-full transition-all duration-300",
+                'h-1.5 w-1.5 rounded-full transition-all duration-300',
                 current === i
-                  ? "w-6 bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.5)]"
-                  : "bg-white/50 hover:bg-white/80"
+                  ? 'w-6 bg-kodai-green shadow-[0_0_8px_rgba(45,122,79,0.5)]'
+                  : 'bg-white/50 hover:bg-white/80',
               )}
               aria-label={`Go to slide ${i + 1}`}
             />

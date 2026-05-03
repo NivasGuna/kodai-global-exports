@@ -31,10 +31,26 @@
     }
   ],
   "socials": [
-    { "platform": "Facebook", "href": "https://www.facebook.com/profile.php?id=61587369705591", "icon": "Facebook" },
-    { "platform": "Instagram", "href": "https://www.instagram.com/kodaiexports/", "icon": "Instagram" },
-    { "platform": "Linkedin", "href": "https://www.linkedin.com/in/babuji-sowrirajan-7b95883ab/", "icon": "Linkedin" },
-    { "platform": "Whatsapp", "href": "https://wa.me/919677447233?text=Hi%20I%20am%20interested%20in%20your%20products", "icon": "Whatsapp" }
+    {
+      "platform": "Facebook",
+      "href": "https://www.facebook.com/profile.php?id=61587369705591",
+      "icon": "Facebook"
+    },
+    {
+      "platform": "Instagram",
+      "href": "https://www.instagram.com/kodaiexports/",
+      "icon": "Instagram"
+    },
+    {
+      "platform": "Linkedin",
+      "href": "https://www.linkedin.com/in/babuji-sowrirajan-7b95883ab/",
+      "icon": "Linkedin"
+    },
+    {
+      "platform": "Whatsapp",
+      "href": "https://wa.me/919677447233?text=Hi%20I%20am%20interested%20in%20your%20products",
+      "icon": "Whatsapp"
+    }
   ],
   "copyright": "Copyright © 2026 Kodai Global Exports"
 }

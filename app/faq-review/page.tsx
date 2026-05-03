@@ -14,25 +14,13 @@ import { HeroBadge } from '@/components/shared/HeroBadge';
 import { FormattedText } from '@/components/shared/FormattedText';
 import { FadeIn } from '@/components/shared/FadeIn';
 
-export const metadata = {
-  title: 'FAQ & Reviews | Kodai Global Exports – Essential Oil Export Questions Answered',
-  description: 'Find answers to frequently asked questions about Kodai Global Exports premium essential oils, global export processes, quality certifications, and customer reviews from international partners.',
-  keywords: ['essential oil FAQ', 'Kodai Global Exports reviews', 'lemongrass oil questions', 'oil export process India', 'essential oil quality standards'],
-  openGraph: {
-    title: 'FAQ & Reviews | Kodai Global Exports',
-    description: 'Frequently asked questions and customer reviews about premium essential oil exports from India.',
-    type: 'website',
-  },
-};
+export const metadata = pageContent.metadata;
 
 export default function Page() {
   return (
     <main className="pb-24">
       <section className="relative isolate min-h-screen overflow-hidden">
-        <HeroBackground
-          src="/images/mission-vision.jpg"
-          alt="FAQ Banner"
-        />
+        <HeroBackground src="/images/mission-vision.jpg" alt={pageContent.hero.imageAlt} />
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-[calc(var(--kodai-header-height)+1rem)] pb-12 sm:pt-[calc(var(--kodai-header-height)+2rem)] sm:px-6 md:px-10 md:pt-36 md:pb-20">
           <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
@@ -69,7 +57,7 @@ export default function Page() {
               <div className="relative aspect-[5/4]">
                 <Image
                   src="/images/faq.jpg"
-                  alt="Kodai Global Exports FAQ"
+                  alt={pageContent.contact.imageAlt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover"
@@ -109,11 +97,7 @@ export default function Page() {
 
             <Accordion type="single" collapsible className="space-y-4">
               {faqList.map((item, index) => (
-                <FadeIn
-                  key={index}
-                  delay={index * 0.05}
-                  className="h-auto"
-                >
+                <FadeIn key={index} delay={index * 0.05} className="h-auto">
                   <AccordionItem
                     value={`item-${index}`}
                     className="h-auto rounded-[1.5rem] border border-white/70 bg-white/85 px-5 shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-kodai-green/20 hover:shadow-[0_18px_50px_rgba(45,122,79,0.08)]"
@@ -149,13 +133,8 @@ export default function Page() {
 
         <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
           {reviews.map((review, index) => (
-            <FadeIn
-              key={index}
-              delay={index * 0.1}
-            >
-              <div
-                className="group relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/85 p-8 shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-kodai-green/20 hover:shadow-[0_20px_60px_rgba(45,122,79,0.08)]"
-              >
+            <FadeIn key={index} delay={index * 0.1}>
+              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-white/85 p-8 shadow-[0_12px_40px_rgba(26,31,46,0.05)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-kodai-green/20 hover:shadow-[0_20px_60px_rgba(45,122,79,0.08)]">
                 <div className="absolute -right-4 -top-4 opacity-10">
                   <Star size={96} className="fill-kodai-green text-kodai-green" />
                 </div>
@@ -174,9 +153,13 @@ export default function Page() {
                     {[...Array(5)].map((_, i) => {
                       const ratingValue = i + 1;
                       if (review.rating >= ratingValue) {
-                        return <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />;
+                        return (
+                          <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                        );
                       } else if (review.rating >= ratingValue - 0.5) {
-                        return <StarHalf key={i} size={18} className="fill-yellow-400 text-yellow-400" />;
+                        return (
+                          <StarHalf key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                        );
                       } else {
                         return <Star key={i} size={18} className="text-gray-200" />;
                       }
@@ -184,7 +167,7 @@ export default function Page() {
                   </div>
                 </div>
                 <p className="relative z-10 mt-6 text-base leading-8 text-gray-600 italic">
-                  "{review.comment}"
+                  &quot;{review.comment}&quot;
                 </p>
               </div>
             </FadeIn>

@@ -1,4 +1,20 @@
 {
+  "metadata": {
+    "title": "About Us | Kodai Global Exports",
+    "description": "Kodai Global Exports is a professionally managed essential oil export company from India specializing in premium Lemongrass Oil and Eucalyptus Oil. FSSAI certified, APEDA registered, serving 7+ global markets.",
+    "keywords": [
+      "about Kodai Global Exports",
+      "essential oil company India",
+      "premium oil exporter",
+      "lemongrass oil manufacturer",
+      "FSSAI certified essential oils"
+    ],
+    "openGraph": {
+      "title": "About Us | Kodai Global Exports",
+      "description": "A professionally managed essential oil export company delivering premium oils to global markets.",
+      "type": "website"
+    }
+  },
   "hero": {
     "badge": "Sustainable • Pure • Reliable",
     "title": "The Essence of Purity",
@@ -8,6 +24,7 @@
   },
   "whyChooseUs": {
     "title": "Why Choose Us?",
+    "subtitle": "Why we stand out",
     "description": "Kodai Global Exports follows a {structured and quality-focused approach} in the production and export of premium Essential Oils and Natural Extracts. We give high importance on consistency and purity in every batch, while strictly following international quality standards throughout our operations.",
     "subDescription": "Our current specialty, Lemongrass Oil, is produced from carefully selected raw materials and processed under controlled conditions to maintain high quality. Before shipment, every batch is tested and verified to ensure it meets global standards and buyer requirements.",
     "quote": "Rather than making big claims, we focus on honest communication, transparency, and proper documentation. Our structured processes help us maintain reliability in international markets.",

@@ -1,6 +1,5 @@
 'use server';
 
-import React from 'react';
 import { Resend } from 'resend';
 import { ContactEmail } from '@/components/emails/ContactEmail';
 
@@ -29,8 +28,8 @@ export async function sendContactEmail(formData: {
     }
 
     return { success: true, data };
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Server Action Error:', err);
-    return { success: false, error: err.message || 'Failed to send email' };
+    return { success: false, error: err instanceof Error ? err.message : 'Failed to send email' };
   }
 }

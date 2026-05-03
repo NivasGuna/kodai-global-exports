@@ -1,12 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { HeroBackground } from './HeroBackground';
 import { HeroBadge } from './HeroBadge';
 import { FormattedText } from './FormattedText';
@@ -14,6 +9,7 @@ import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, FileCheck2, ShieldCheck, LucideIcon, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useCarousel } from './hooks/useCarousel';
 
 interface Slide {
   badge: string;
@@ -35,22 +31,7 @@ interface HeroCarouselProps {
 const introIcons: LucideIcon[] = [CheckCircle2, FileCheck2, ShieldCheck];
 
 export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-
-  React.useEffect(() => {
-    if (!api) return;
-
-    api.on('select', () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-
-    const interval = setInterval(() => {
-      api.scrollNext();
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [api]);
+  const { api, setApi, current } = useCarousel(4000);
 
   return (
     <section className="relative isolate h-screen min-h-screen overflow-hidden">
@@ -138,7 +119,10 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                           >
                             <span>{slide.cta.label}</span>
                             <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/20 transition-all group-hover/btn:rotate-[360deg] group-hover/btn:bg-white/30">
-                              <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-0.5" />
+                              <ArrowRight
+                                size={18}
+                                className="transition-transform group-hover/btn:translate-x-0.5"
+                              />
                             </div>
                           </Link>
                         </motion.div>
@@ -170,7 +154,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                 fill="transparent"
                 className={cn(
                   'opacity-20 transition-opacity duration-300',
-                  current === i && 'opacity-40'
+                  current === i && 'opacity-40',
                 )}
               />
               {current === i && (
@@ -193,7 +177,7 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                 'h-1.5 w-1.5 rounded-full transition-all duration-500',
                 current === i
                   ? 'scale-150 bg-white shadow-[0_0_15px_rgba(255,255,255,1)]'
-                  : 'bg-white/40 group-hover:bg-white/70'
+                  : 'bg-white/40 group-hover:bg-white/70',
               )}
             />
           </button>

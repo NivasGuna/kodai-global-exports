@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Leaf, ChevronDown } from 'lucide-react';
 import {
   Menubar,
@@ -26,7 +24,8 @@ interface NavLinkProps {
   onClick?: () => void;
 }
 
-const linkBase = 'relative rounded-full px-5 py-2.5 text-[13px] font-semibold transition-all duration-300';
+const linkBase =
+  'relative rounded-full px-5 py-2.5 text-[13px] font-semibold transition-all duration-300';
 const linkActive = 'bg-kodai-green text-white shadow-[0_4px_16px_rgba(45,122,79,0.40)]';
 const linkIdle = 'text-white/80 hover:bg-white/10 hover:text-white';
 
@@ -50,10 +49,11 @@ function MobileNavLink({ href, label, isActive, onClick }: NavLinkProps) {
       href={href}
       onClick={onClick}
       aria-current={isActive ? 'page' : undefined}
-      className={`flex items-center justify-between rounded-2xl border px-4 py-3 text-sm font-medium transition-all duration-300 ${isActive
-        ? 'border-kodai-green/30 bg-kodai-green/15 text-white'
-        : 'border-white/[0.07] text-white/65 hover:border-white/10 hover:bg-white/[0.06] hover:text-white'
-        }`}
+      className={`flex items-center justify-between rounded-2xl border px-4 py-3 text-sm font-medium transition-all duration-300 ${
+        isActive
+          ? 'border-kodai-green/30 bg-kodai-green/15 text-white'
+          : 'border-white/[0.07] text-white/65 hover:border-white/10 hover:bg-white/[0.06] hover:text-white'
+      }`}
     >
       <span>{label}</span>
       {isActive && <Leaf size={15} className="text-kodai-green" />}
@@ -61,101 +61,50 @@ function MobileNavLink({ href, label, isActive, onClick }: NavLinkProps) {
   );
 }
 
+import { useNavbar } from './hooks/useNavbar';
+
 export default function Navbar() {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | undefined>(undefined);
-  const [scrolled, setScrolled] = useState(false);
+  const {
+    pathname,
+    menuOpen,
+    setMenuOpen,
+    activeMenu,
+    setActiveMenu,
+    scrolled,
+    handleMouseEnter,
+    handleMouseLeave,
+    isActiveLink,
+    handleProductClick,
+  } = useNavbar();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnter = (menu: string) => {
-    if (menuTimeoutRef.current) {
-      clearTimeout(menuTimeoutRef.current);
-      menuTimeoutRef.current = null;
-    }
-    setActiveMenu(menu);
-  };
-
-  const handleMouseLeave = () => {
-    if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
-    menuTimeoutRef.current = setTimeout(() => {
-      setActiveMenu(undefined);
-      menuTimeoutRef.current = null;
-    }, 700);
-  };
-
-  useEffect(() => {
-    return () => {
-      if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
-    };
-  }, []);
-
-  const isActiveLink = (href: string) => {
-    if (!pathname) return false;
-    if (href === '/') return pathname === '/';
-    return pathname === href || pathname.startsWith(`${href}/`);
-  };
-
-  /* ─── Hash-aware product link click handler ─── */
-  const handleProductClick = (e: React.MouseEvent | React.KeyboardEvent, href: string) => {
-    const [basePath, hash] = href.split('#');
-
-    if (pathname === basePath) {
-      e.preventDefault();
-      if (hash) {
-        window.history.replaceState(null, '', `${basePath}#${hash}`);
-        window.dispatchEvent(new Event('hashchange'));
-      } else {
-        window.history.replaceState(null, '', basePath);
-        window.dispatchEvent(new Event('hashchange'));
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      setActiveMenu(undefined);
-      setMenuOpen(false);
-    } else {
-      // Cross-page navigation: Manual handle with explicit router.push
-      // to avoid race conditions with Radix UI and state updates.
-      e.preventDefault();
-      setActiveMenu(undefined);
-      setMenuOpen(false);
-
-      setTimeout(() => {
-        router.push(href);
-      }, 10);
-    }
-  };
-
-  const menuTriggerActive = 'bg-kodai-green text-white shadow-[0_4px_16px_rgba(45,122,79,0.40)] hover:bg-kodai-green hover:text-white';
+  const menuTriggerActive =
+    'bg-kodai-green text-white shadow-[0_4px_16px_rgba(45,122,79,0.40)] hover:bg-kodai-green hover:text-white';
   const menuTriggerIdle = 'text-white/80 hover:bg-white/10 hover:text-white';
   const menuTriggerOpen = 'bg-white/12 text-white';
 
   const desktopBefore = navbarContent.navLinks.slice(0, 2); // Home, About
-  const desktopAfter = navbarContent.navLinks.slice(2);      // FAQ & Reviews, Contact
+  const desktopAfter = navbarContent.navLinks.slice(2); // FAQ & Reviews, Contact
 
   const mobileLinksBeforeProducts = navbarContent.navLinks.slice(0, 2); // Home, About
-  const mobileLinksAfterProducts = navbarContent.navLinks.slice(2);     // FAQ & Reviews, Contact
+  const mobileLinksAfterProducts = navbarContent.navLinks.slice(2); // FAQ & Reviews, Contact
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-500 ${scrolled
-        ? 'border-b border-white/[0.07] bg-kodai-dark/92 shadow-[0_4px_32px_rgba(0,0,0,0.22)] backdrop-blur-2xl'
-        : 'bg-transparent'
-        }`}
+      className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-500 ${
+        scrolled
+          ? 'border-b border-white/[0.07] bg-kodai-dark/92 shadow-[0_4px_32px_rgba(0,0,0,0.22)] backdrop-blur-2xl'
+          : 'bg-transparent'
+      }`}
     >
       {scrolled && (
         <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-kodai-green/50 to-transparent" />
       )}
 
       <div className="mx-auto flex h-[var(--kodai-header-height)] max-w-[85rem] items-center justify-between px-4 sm:px-6 md:px-10">
-        <Link href="/" className="group flex items-center gap-3.5 transition-opacity duration-300 hover:opacity-90">
+        <Link
+          href="/"
+          className="group flex items-center gap-3.5 transition-opacity duration-300 hover:opacity-90"
+        >
           <div className="relative flex h-11 w-11 flex-none items-center justify-center  bg-white/80 p-3 rounded-full  shadow-lg transition-all duration-500 group-hover:bg-white/15 group-hover:ring-white/30 sm:h-18 sm:w-18">
             <Image
               src="/images/logo.png"
@@ -169,7 +118,8 @@ export default function Navbar() {
             <span className="font-playfair text-[20px] font-bold tracking-tight text-white sm:text-[24px]">
               KODAI
             </span>
-            <span className="mt-1 font-sans text-[9px] font-bold tracking-[0.35em] text-white/90 uppercase sm:text-[10px]"
+            <span
+              className="mt-1 font-sans text-[9px] font-bold tracking-[0.35em] text-white/90 uppercase sm:text-[10px]"
               style={{ textShadow: '0 1px 8px rgba(45,122,79,0.6)' }}
             >
               GLOBAL EXPORTS
@@ -179,12 +129,7 @@ export default function Navbar() {
 
         <nav className="ml-auto hidden items-center gap-1 md:flex">
           {desktopBefore.map(({ label, href }) => (
-            <DesktopNavLink
-              key={href}
-              href={href}
-              label={label}
-              isActive={isActiveLink(href)}
-            />
+            <DesktopNavLink key={href} href={href} label={label} isActive={isActiveLink(href)} />
           ))}
 
           <Menubar
@@ -197,12 +142,13 @@ export default function Navbar() {
                 onMouseEnter={() => handleMouseEnter('products')}
                 onMouseLeave={handleMouseLeave}
                 aria-current={pathname?.startsWith('/products') ? 'page' : undefined}
-                className={`${linkBase} flex items-center gap-1.5 outline-none ${pathname?.startsWith('/products')
-                  ? menuTriggerActive
-                  : activeMenu === 'products'
-                    ? menuTriggerOpen
-                    : menuTriggerIdle
-                  }`}
+                className={`${linkBase} flex items-center gap-1.5 outline-none ${
+                  pathname?.startsWith('/products')
+                    ? menuTriggerActive
+                    : activeMenu === 'products'
+                      ? menuTriggerOpen
+                      : menuTriggerIdle
+                }`}
               >
                 {navbarContent.productsMenu.title}
                 <ChevronDown
@@ -219,7 +165,10 @@ export default function Navbar() {
                 className="w-56 rounded-2xl border border-white/[0.08] bg-[#0f1623]/98 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.40)] backdrop-blur-xl"
               >
                 <div className="flex flex-col gap-1">
-                  <MenubarItem asChild className="cursor-pointer rounded-xl px-4 py-3 focus:bg-white/8 focus:text-white">
+                  <MenubarItem
+                    asChild
+                    className="cursor-pointer rounded-xl px-4 py-3 focus:bg-white/8 focus:text-white"
+                  >
                     <Link
                       href="/products"
                       onClick={(e) => handleProductClick(e, '/products')}
@@ -265,12 +214,7 @@ export default function Navbar() {
           </Menubar>
 
           {desktopAfter.map(({ label, href }) => (
-            <DesktopNavLink
-              key={href}
-              href={href}
-              label={label}
-              isActive={isActiveLink(href)}
-            />
+            <DesktopNavLink key={href} href={href} label={label} isActive={isActiveLink(href)} />
           ))}
         </nav>
 

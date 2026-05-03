@@ -8,34 +8,24 @@ import { HeroCarousel } from '@/components/shared/HeroCarousel';
 import { SectionLabel } from '@/components/shared/SectionLabel';
 import { FadeIn } from '@/components/shared/FadeIn';
 
-export const metadata: Metadata = {
-  title: 'Kodai Global Exports | Premium Essential Oils & Natural Extracts from India',
-  description:
-    'Kodai Global Exports is a leading essential oil export company from India offering premium steam-distilled Lemongrass Oil and Eucalyptus Oil to global markets. FSSAI certified, APEDA registered.',
-  keywords: ['essential oils India', 'lemongrass oil exporter', 'eucalyptus oil supplier', 'premium essential oils', 'natural extracts export', 'Kodai Global Exports'],
-  openGraph: {
-    title: 'Kodai Global Exports | Premium Essential Oils from India',
-    description: 'Leading exporter of premium Lemongrass Oil & Eucalyptus Oil. FSSAI certified, APEDA registered.',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = homeContent.metadata;
 
 const introIcons = [CheckCircle2, FileCheck2, ShieldCheck];
 
 export default function HomePage() {
   return (
     <main className="pb-24">
-      <HeroCarousel
-        slides={homeContent.hero.slides}
-        highlights={homeContent.intro.highlights}
-      />
+      <HeroCarousel slides={homeContent.hero.slides} highlights={homeContent.intro.highlights} />
 
       <section className="mx-auto mt-12 max-w-[85rem] px-4 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
-          <FadeIn direction="right" className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)] lg:aspect-auto lg:h-[650px]">
+          <FadeIn
+            direction="right"
+            className="relative aspect-[4/3] w-full overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)] lg:aspect-auto lg:h-[650px]"
+          >
             <Image
               src="/images/whoWeAre-banner.jpeg"
-              alt="Kodai Global Exports - Who We Are"
+              alt={homeContent.intro.imageAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
@@ -74,7 +64,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="mt-5 text-xl font-semibold text-kodai-dark">{item}</h3>
                 <p className="mt-3 text-sm leading-7 text-gray-500">
-                  Structured processes, documentation, and quality control built for dependable export partnerships.
+                  {homeContent.intro.featureDescription}
                 </p>
               </FadeIn>
             );
@@ -94,10 +84,13 @@ export default function HomePage() {
             </p>
           </FadeIn>
 
-          <FadeIn delay={0.2} className="mt-10 mb-10 overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)]">
+          <FadeIn
+            delay={0.2}
+            className="mt-10 mb-10 overflow-hidden rounded-[2.5rem] border border-white/70 shadow-[0_16px_48px_rgba(26,31,46,0.06)]"
+          >
             <Image
               src="/images/global_markets_map.png"
-              alt="Global markets highlighted on world map: Germany, France, Kuwait, Saudi Arabia, UAE, Bangladesh, South Africa"
+              alt={homeContent.markets.mapAlt}
               width={1600}
               height={900}
               sizes="100vw"
@@ -157,9 +150,7 @@ export default function HomePage() {
             <h3 className="font-playfair text-3xl font-semibold sm:text-4xl">
               {homeContent.cta.title}
             </h3>
-            <p className="mt-4 text-base leading-8 text-white/75">
-              {homeContent.cta.description}
-            </p>
+            <p className="mt-4 text-base leading-8 text-white/75">{homeContent.cta.description}</p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href={homeContent.cta.primary.href}

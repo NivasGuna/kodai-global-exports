@@ -1,7 +1,8 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display, Geist } from 'next/font/google';
 import './globals.css';
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Toaster } from '@/components/ui/sonner';
@@ -25,7 +26,8 @@ export const metadata: Metadata = {
     default: 'Kodai Global Exports | Premium Essential Oils & Natural Extracts from India',
     template: '%s | Kodai Global Exports',
   },
-  description: 'Kodai Global Exports is a leading essential oil export company from India offering premium steam-distilled Lemongrass Oil and Eucalyptus Oil. FSSAI certified, APEDA registered, serving Germany, France, UAE, Saudi Arabia and more.',
+  description:
+    'Kodai Global Exports is a leading essential oil export company from India offering premium steam-distilled Lemongrass Oil and Eucalyptus Oil. FSSAI certified, APEDA registered, serving Germany, France, UAE, Saudi Arabia and more.',
   keywords: [
     'essential oils exporter India',
     'lemongrass oil supplier',
@@ -62,7 +64,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Kodai Global Exports | Premium Essential Oils from India',
-    description: 'Leading exporter of premium steam-distilled Lemongrass Oil & Eucalyptus Oil from India. FSSAI certified, APEDA registered. Serving 7+ global markets with consistent quality.',
+    description:
+      'Leading exporter of premium steam-distilled Lemongrass Oil & Eucalyptus Oil from India. FSSAI certified, APEDA registered. Serving 7+ global markets with consistent quality.',
     url: 'https://kodaiglobalexports.com',
     siteName: 'Kodai Global Exports',
     images: [
@@ -80,7 +83,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary',
     title: 'Kodai Global Exports | Premium Essential Oils from India',
-    description: 'Leading exporter of premium Lemongrass Oil & Eucalyptus Oil from India. FSSAI certified, APEDA registered.',
+    description:
+      'Leading exporter of premium Lemongrass Oil & Eucalyptus Oil from India. FSSAI certified, APEDA registered.',
     images: ['/images/logo.png'],
   },
   icons: {
@@ -119,14 +123,36 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn("h-full", "antialiased", inter.variable, playfair.variable, "font-sans", geist.variable)}>
+    <html
+      lang="en"
+      className={cn(
+        'h-full',
+        'antialiased',
+        inter.variable,
+        playfair.variable,
+        'font-sans',
+        geist.variable,
+      )}
+    >
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              document.addEventListener('contextmenu', event => event.preventDefault());
+              document.addEventListener('copy', event => event.preventDefault());
+              document.addEventListener('cut', event => event.preventDefault());
+            `,
+          }}
+        />
       </head>
-      <body className="min-h-screen flex flex-col font-sans text-kodai-dark" suppressHydrationWarning>
+      <body
+        className="min-h-screen flex flex-col font-sans text-kodai-dark"
+        suppressHydrationWarning
+      >
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

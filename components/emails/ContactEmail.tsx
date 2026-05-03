@@ -18,12 +18,7 @@ interface ContactEmailProps {
   message: string;
 }
 
-export const ContactEmail = ({
-  name,
-  email,
-  country,
-  message,
-}: ContactEmailProps) => (
+export const ContactEmail = ({ name, email, country, message }: ContactEmailProps) => (
   <Html>
     <Head />
     <Preview>New Contact Form Submission from {name}</Preview>

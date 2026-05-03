@@ -27,9 +27,9 @@ export function FormTextarea({
         {...registration}
         {...props}
         className={`w-full px-5 py-4 rounded-2xl bg-white border outline-none transition-all duration-200 placeholder:text-gray-300 resize-none text-base ${
-          error 
-            ? "border-red-500 focus-visible:ring-4 focus-visible:ring-red-500/20 focus-visible:border-red-500" 
-            : "border-gray-100 focus-visible:ring-4 focus-visible:ring-kodai-green/5 focus-visible:border-kodai-green"
+          error
+            ? 'border-red-500 focus-visible:ring-4 focus-visible:ring-red-500/20 focus-visible:border-red-500'
+            : 'border-gray-100 focus-visible:ring-4 focus-visible:ring-kodai-green/5 focus-visible:border-kodai-green'
         }`}
       />
       {error && <p className="text-sm font-medium text-red-500 animate-fade-in">{error}</p>}

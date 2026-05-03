@@ -6,22 +6,12 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { FormInput } from '@/components/shared/FormInput';
 import { FormTextarea } from '@/components/shared/FormTextarea';
-import { useForm, useWatch } from 'react-hook-form';
 import contactContent from './contact.json';
 import { Label } from '@/components/ui/label';
 import { HeroBackground } from '@/components/shared/HeroBackground';
 import { HeroBadge } from '@/components/shared/HeroBadge';
 import { FadeIn } from '@/components/shared/FadeIn';
-import { sendContactEmail } from './actions';
-import { toast } from 'sonner';
-
-type FormValues = {
-  name: string;
-  email: string;
-  country: string;
-  message: string;
-  robot: boolean;
-};
+import { useContactForm } from './hooks/useContactForm';
 
 const iconMap: Record<string, React.ElementType> = {
   Mail,
@@ -30,71 +20,24 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function ContactPage() {
-  const [formStatus, setFormStatus] = React.useState<'idle' | 'submitting' | 'success'>('idle');
-  const address =
-    contactContent.info.items.find((item) => item.type === 'address')?.value ??
-    'Kodai Global Exports, Periyakulam, Theni District-625601, Tamilnadu, India.';
-  const mapQuery = encodeURIComponent(address.replace(/\n/g, ', '));
-  const mapEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
-
   const {
-    control,
     register,
     handleSubmit,
+    errors,
+    formStatus,
+    isVerified,
     setValue,
-    reset,
     clearErrors,
-    formState: { errors },
-  } = useForm<FormValues>({
-    defaultValues: {
-      name: '',
-      email: '',
-      country: '',
-      message: '',
-      robot: false,
-    },
-  });
-
-  const isVerified = useWatch({
-    control,
-    name: 'robot',
-  });
-
-  const onSubmit = async (data: FormValues) => {
-    setFormStatus('submitting');
-    try {
-      const result = await sendContactEmail({
-        name: data.name,
-        email: data.email,
-        country: data.country,
-        message: data.message,
-      });
-
-      if (result.success) {
-        setFormStatus('success');
-        toast.success('Message sent successfully! We will get back to you soon.');
-        setTimeout(() => {
-          setFormStatus('idle');
-          reset({ name: '', email: '', country: '', message: '', robot: false });
-          clearErrors();
-        }, 3000);
-      } else {
-        setFormStatus('idle');
-        toast.error(result.error || 'Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      setFormStatus('idle');
-      toast.error('An unexpected error occurred. Please try again later.');
-    }
-  };
+    onSubmit,
+    address,
+    mapQuery,
+    mapEmbedUrl,
+  } = useContactForm();
 
   return (
     <main className="pb-24">
       <section className="relative isolate min-h-screen overflow-hidden">
-        <HeroBackground
-          src="/images/contact-hero-banner.png"
-          alt="Contact Us Banner"
-        />
+        <HeroBackground src="/images/contact-hero-banner.png" alt="Contact Us Banner" />
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
           <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
@@ -108,10 +51,7 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-2.5 sm:mt-10 sm:gap-3">
-            {[
-              'Premium product inquiries',
-              'Direct export support',
-            ].map((item) => (
+            {contactContent.hero.features.map((item) => (
               <div
                 key={item}
                 className="inline-flex items-center gap-2 rounded-full bg-white/95 px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase text-kodai-green shadow-xl shadow-black/10 backdrop-blur-sm transition-transform hover:scale-105"
@@ -132,7 +72,7 @@ export default function ContactPage() {
                 {contactContent.info.title}
               </span>
               <h2 className="mt-3 font-playfair text-3xl font-semibold text-kodai-dark sm:text-4xl">
-                Reach us directly
+                {contactContent.info.subtitle}
               </h2>
             </FadeIn>
 
@@ -154,7 +94,7 @@ export default function ContactPage() {
                           {item.label}
                         </p>
                         <p className="mt-2 whitespace-pre-line text-base font-medium leading-7 text-kodai-dark">
-                           {item.value}
+                          {item.value}
                         </p>
                       </div>
                     </div>
@@ -193,7 +133,9 @@ export default function ContactPage() {
                     label={contactContent.form.fields.name.label}
                     placeholder={contactContent.form.fields.name.placeholder}
                     required
-                    registration={register('name', { required: contactContent.form.fields.name.error.required })}
+                    registration={register('name', {
+                      required: contactContent.form.fields.name.error.required,
+                    })}
                     error={errors.name?.message as string}
                   />
                   <FormInput
@@ -217,7 +159,9 @@ export default function ContactPage() {
                     label={contactContent.form.fields.country.label}
                     placeholder={contactContent.form.fields.country.placeholder}
                     required
-                    registration={register('country', { required: contactContent.form.fields.country.error.required })}
+                    registration={register('country', {
+                      required: contactContent.form.fields.country.error.required,
+                    })}
                     error={errors.country?.message as string}
                   />
                   <FormTextarea
@@ -225,7 +169,9 @@ export default function ContactPage() {
                     label={contactContent.form.fields.message.label}
                     placeholder={contactContent.form.fields.message.placeholder}
                     required
-                    registration={register('message', { required: contactContent.form.fields.message.error.required })}
+                    registration={register('message', {
+                      required: contactContent.form.fields.message.error.required,
+                    })}
                     error={errors.message?.message as string}
                   />
                 </div>
@@ -236,7 +182,9 @@ export default function ContactPage() {
                       type="checkbox"
                       className="hidden"
                       id="robot-hidden"
-                      {...register('robot', { required: contactContent.form.fields.robot.error.required })}
+                      {...register('robot', {
+                        required: contactContent.form.fields.robot.error.required,
+                      })}
                     />
                     <Checkbox
                       id="robot"
@@ -263,10 +211,11 @@ export default function ContactPage() {
 
                 <Button
                   disabled={formStatus === 'submitting' || formStatus === 'success'}
-                  className={`w-full rounded-2xl py-7 text-lg font-bold transition-all duration-300 overflow-hidden ${formStatus === 'success'
-                    ? 'border-none bg-emerald-500 hover:bg-emerald-600'
-                    : 'border-none bg-kodai-green hover:bg-kodai-green-dark'
-                    } ${formStatus === 'submitting' ? 'opacity-80' : ''}`}
+                  className={`w-full rounded-2xl py-7 text-lg font-bold transition-all duration-300 overflow-hidden ${
+                    formStatus === 'success'
+                      ? 'border-none bg-emerald-500 hover:bg-emerald-600'
+                      : 'border-none bg-kodai-green hover:bg-kodai-green-dark'
+                  } ${formStatus === 'submitting' ? 'opacity-80' : ''}`}
                 >
                   <div className="flex items-center justify-center gap-2">
                     {formStatus === 'idle' && (
@@ -295,10 +244,10 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[0.42fr_1fr]">
             <div className="bg-kodai-dark p-8 text-white sm:p-10">
               <p className="text-xs font-bold uppercase tracking-[0.28em] text-kodai-green">
-                Visit Us
+                {contactContent.map.badge}
               </p>
               <h3 className="mt-3 font-playfair text-3xl font-semibold">
-                Find our location
+                {contactContent.map.title}
               </h3>
               <p className="mt-4 whitespace-pre-line text-sm leading-7 text-white/75 sm:text-base">
                 {address}
@@ -309,13 +258,13 @@ export default function ContactPage() {
                 rel="noreferrer"
                 className="mt-6 inline-flex rounded-2xl bg-kodai-green px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-kodai-green-dark"
               >
-                Open in Maps
+                {contactContent.map.buttonText}
               </a>
             </div>
 
             <div className="relative min-h-[360px]">
               <iframe
-                title="Kodai Global Exports location map"
+                title={contactContent.map.accessibilityLabel}
                 src={mapEmbedUrl}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

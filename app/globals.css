@@ -1,9 +1,9 @@
 @import 'tailwindcss';
-@import "shadcn/tailwind.css";
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
-*{
+* {
   box-sizing: border-box;
 }
 
@@ -13,9 +13,9 @@ body {
 }
 
 :root {
-  --kodai-green:      #2d7a4f;
+  --kodai-green: #2d7a4f;
   --kodai-green-dark: #1f5c3a;
-  --kodai-dark:       #1a1f2e;
+  --kodai-dark: #1a1f2e;
   --kodai-header-height: 80px;
   --kodai-nav-surface: rgba(255, 255, 255, 0.88);
   --kodai-nav-border: rgba(26, 31, 46, 0.07);
@@ -26,12 +26,12 @@ body {
 }
 
 @theme {
-  --color-kodai-green:      var(--kodai-green);
+  --color-kodai-green: var(--kodai-green);
   --color-kodai-green-dark: var(--kodai-green-dark);
-  --color-kodai-dark:       var(--kodai-dark);
-  --color-kodai-nav-active:  var(--kodai-nav-active);
-  --font-playfair:          var(--font-playfair);
-  --font-inter:             var(--font-inter);
+  --color-kodai-dark: var(--kodai-dark);
+  --color-kodai-nav-active: var(--kodai-nav-active);
+  --font-playfair: var(--font-playfair);
+  --font-inter: var(--font-inter);
 }
 
 body {
@@ -42,6 +42,10 @@ body {
     radial-gradient(circle at top right, rgba(26, 31, 46, 0.04), transparent 24%),
     linear-gradient(180deg, #fbfaf7 0%, #ffffff 28%, #f7f6f2 100%);
   background-attachment: fixed;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 html {
@@ -51,11 +55,15 @@ html {
 
 /* ─── Hero text shadow utility for readability on vivid images ─── */
 .hero-text-shadow {
-  text-shadow: 0 2px 16px rgba(0,0,0,0.8), 0 1px 4px rgba(0,0,0,0.5);
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.8),
+    0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero-text-shadow-sm {
-  text-shadow: 0 1px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.4);
+  text-shadow:
+    0 1px 8px rgba(0, 0, 0, 0.5),
+    0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 /* ─── Scroll-margin for product cards (no :target outline to avoid stale highlights) ─── */

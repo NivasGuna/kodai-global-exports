@@ -1,4 +1,21 @@
 {
+  "metadata": {
+    "title": "Kodai Global Exports | Premium Essential Oils & Natural Extracts from India",
+    "description": "Kodai Global Exports is a leading essential oil export company from India offering premium steam-distilled Lemongrass Oil and Eucalyptus Oil to global markets. FSSAI certified, APEDA registered.",
+    "keywords": [
+      "essential oils India",
+      "lemongrass oil exporter",
+      "eucalyptus oil supplier",
+      "premium essential oils",
+      "natural extracts export",
+      "Kodai Global Exports"
+    ],
+    "openGraph": {
+      "title": "Kodai Global Exports | Premium Essential Oils from India",
+      "description": "Leading exporter of premium Lemongrass Oil & Eucalyptus Oil. FSSAI certified, APEDA registered.",
+      "type": "website"
+    }
+  },
   "hero": {
     "slides": [
       {
@@ -26,6 +43,8 @@
   },
   "intro": {
     "tagline": "Who We Are",
+    "imageAlt": "Kodai Global Exports - Who We Are",
+    "featureDescription": "Structured processes, documentation, and quality control built for dependable export partnerships.",
     "title": "A professionally managed export company with a {quality-first} foundation",
     "paragraphs": [
       "Kodai Global Exports is a professionally managed essential oil export company focused on high-quality Lemongrass Oil and Eucalyptus Oil for both Indian and international markets. We have built a strong foundation based on quality excellence, regulatory compliance, proper documentation, structured production, and well-organized processes to deliver reliable and consistent products to global buyers.",
@@ -43,6 +62,7 @@
     "tagline": "Global Markets We Serve",
     "title": "Supplying premium essential oils across {key international markets}",
     "description": "We work with buyers who expect clear communication, reliable export handling, and consistent quality across every shipment.",
+    "mapAlt": "Global markets highlighted on world map: Germany, France, Kuwait, Saudi Arabia, UAE, Bangladesh, South Africa",
     "countries": [
       "Germany",
       "France",

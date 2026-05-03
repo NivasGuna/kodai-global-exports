@@ -1,15 +1,30 @@
 {
+  "metadata": {
+    "title": "FAQ & Reviews | Kodai Global Exports – Essential Oil Export Questions Answered",
+    "description": "Find answers to frequently asked questions about Kodai Global Exports premium essential oils, global export processes, quality certifications, and customer reviews from international partners.",
+    "keywords": [
+      "essential oil FAQ",
+      "Kodai Global Exports reviews",
+      "lemongrass oil questions",
+      "oil export process India",
+      "essential oil quality standards"
+    ],
+    "openGraph": {
+      "title": "FAQ & Reviews | Kodai Global Exports",
+      "description": "Frequently asked questions and customer reviews about premium essential oil exports from India.",
+      "type": "website"
+    }
+  },
   "hero": {
     "badge": "Help Center",
+    "imageAlt": "FAQ Banner",
     "title": "Frequently Asked {Questions}",
     "subtitle": "Everything you need to know about our premium oils, sourcing process, and global export standards.",
-    "highlights": [
-      "Premium Quality",
-      "Global Logistics"
-    ]
+    "highlights": ["Premium Quality", "Global Logistics"]
   },
   "contact": {
     "tagline": "Still need help?",
+    "imageAlt": "Kodai Global Exports FAQ",
     "title": "Talk to our export team",
     "description": "Can't find what you're looking for? Reach out for product guidance, documentation support, and export clarifications.",
     "buttonText": "Contact Support"

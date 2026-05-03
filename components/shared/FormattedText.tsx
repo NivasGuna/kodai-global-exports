@@ -18,7 +18,7 @@ export const FormattedText = ({ text, highlightClassName }: FormattedTextProps) 
       {parts.map((part, i) => {
         if (part.startsWith('{') && part.endsWith('}')) {
           return (
-            <span key={i} className={highlightClassName || "text-kodai-green italic"}>
+            <span key={i} className={highlightClassName || 'text-kodai-green italic'}>
               {part.slice(1, -1)}
             </span>
           );
