@@ -55,7 +55,7 @@ export const HeroBackground = ({
         onLoad={() => setIsLoaded(true)}
       />
       {/* Premium overlay: Clean, subtle gradients for text readability */}
-      <div className="absolute inset-0 bg-black/25 sm:bg-black/25" />
+      <div className="absolute inset-0 bg-black/70 md:bg-black/25" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/10" />
     </div>
   );
