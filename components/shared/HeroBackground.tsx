@@ -41,7 +41,7 @@ export const HeroBackground = ({
         sizes="(max-width: 768px) 100vw, 1200px"
         priority={priority}
         decoding="async"
-        quality={70}
+        quality={95}
         className={cn(
           'object-cover object-center transition-opacity duration-500',
           isLoaded ? 'opacity-100' : 'opacity-0',
