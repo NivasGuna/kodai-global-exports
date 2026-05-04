@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
@@ -23,39 +23,35 @@ export const HeroBackground = ({
 }: HeroBackgroundProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [prevSrc, setPrevSrc] = useState(src);
-  if (src !== prevSrc) {
-    setPrevSrc(src);
+  useEffect(() => {
     setIsLoaded(false);
-  }
+  }, [src]);
 
   return (
     <div
-      className={cn(
-        'absolute inset-0 -z-10 overflow-hidden bg-[#10261a] bg-cover bg-center bg-no-repeat',
+      className={cn(  
+        'absolute inset-0 -z-10 overflow-hidden bg-[#10261a]',
         className,
       )}
-      style={{ backgroundImage: `url(${src})` }}
     >
       <Image
         src={src}
         alt={alt}
         fill
-        sizes="100vw"
-        preload={priority}
-        unoptimized
+        sizes="(max-width: 768px) 100vw, 1200px"
+        priority={priority}
         decoding="async"
+        quality={95}
         className={cn(
-          'object-cover object-center brightness-[1] saturate-[1.1] transition-opacity duration-500',
+          'object-cover object-center transition-opacity duration-500',
           isLoaded ? 'opacity-100' : 'opacity-0',
           blur ? 'blur-[4px] scale-[1.05]' : 'blur-0 scale-100',
           imageClassName,
         )}
-        quality={95}
         onLoad={() => setIsLoaded(true)}
       />
-      {/* Premium overlay: Clean, subtle gradients for text readability */}
-      <div className="absolute inset-0 bg-black/70 md:bg-black/25" />
+
+      <div className="absolute inset-0 bg-black/75 md:bg-black/25" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/10" />
     </div>
   );
