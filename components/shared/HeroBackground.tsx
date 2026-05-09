@@ -33,9 +33,8 @@ export const HeroBackground = ({
         fill
         sizes="100vw"
         priority={priority}
-        fetchPriority="high"
-        decoding="sync"
-        quality={90}
+        decoding="async"
+        quality={70}
         className={cn(
           'object-cover object-center',
           blur ? 'blur-[4px] scale-[1.05]' : 'blur-0 scale-100',
