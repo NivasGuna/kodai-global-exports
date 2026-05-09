@@ -145,7 +145,9 @@ export default function Page() {
                       {review.avatar}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-lg font-bold text-kodai-dark leading-tight">{review.name}</h3>
+                      <h3 className="text-lg font-bold text-kodai-dark leading-tight">
+                        {review.name}
+                      </h3>
                       <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-gray-400 leading-relaxed">
                         {review.role}
                       </p>

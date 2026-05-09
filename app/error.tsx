@@ -36,10 +36,10 @@ export default function Error({
           Something went wrong
         </h1>
         <p className="mt-6 text-base leading-7 text-gray-600 max-w-lg mx-auto">
-          We encountered an error while trying to display this page. 
-          Our technical team has been notified.
+          We encountered an error while trying to display this page. Our technical team has been
+          notified.
         </p>
-        
+
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => reset()}
@@ -60,7 +60,7 @@ export default function Error({
 
       <FadeIn delay={0.2} className="mt-16 pt-8 border-t border-black/5 w-full max-w-md">
         <p className="text-center text-sm text-gray-500">
-          Persistent issue? 
+          Persistent issue?
           <Link href="/contact" className="ml-1 text-kodai-green font-bold hover:underline">
             Report a problem
           </Link>

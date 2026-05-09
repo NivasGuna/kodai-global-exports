@@ -30,6 +30,49 @@ export const metadata: Metadata = {
   description:
     'Kodai Global Exports is a leading essential oil export company from India offering premium steam-distilled Lemongrass Oil and Eucalyptus Oil. FSSAI certified, APEDA registered, serving Germany, France, UAE, Saudi Arabia and more.',
   keywords: [
+    'Kodai Global Lemongrass oil manufacture',
+    'Lemongrass oil manufacturing Exporter',
+    'Organic Lemongrass oil',
+    'Lemongrass oil Supplier in Tamilnadu',
+    'Lemongrass oil whole seller in India',
+    'pure Lemon grass oil 85% purity',
+    'Kodai Special pure Lemongrass oil',
+    'Arabian grade Lemon grass oil',
+    'Natural Lemon grass oil',
+    'pure and best quality Lemon grass oil',
+    'USA grade Special Lemon grass oil',
+    'Japan grade Lemongrass oil',
+    'Middle East grade Lemon grass oil',
+    'Germany standard Quality Lemon Grass oil',
+    'Cymbopogon citratus oil',
+    'Cymbopogon flexuosus oil',
+    'Therapeutic Grade Lemon grass oil',
+    'Kodai Global Eucalyptus oil manufacture',
+    'Eucalyptus oil manufacturing Exporter',
+    'Organic Eucalyptus oil',
+    'Eucalyptus oil Supplier in Tamilnadu',
+    'Eucalyptus oil whole seller in India',
+    'pure Eucalyptus oil 80% purity',
+    'Kodai Special pure Eucalyptus oil',
+    'Arabian grade Eucalyptus oil',
+    'Natural Eucalyptus oil',
+    'pure and best quality Eucalyptus oil',
+    'USA grade Special Eucalyptus oil',
+    'Japan grade Eucalyptus oil',
+    'Middle East grade Eucalyptus oil',
+    'Germany standard Quality Eucalyptus oil',
+    'Eucalyptus globulus oil',
+    'Therapeutic Grade Eucalyptus oil',
+    'high citral lemongrass oil',
+    'high cineole eucalyptus oil',
+    '1,8-cineole eucalyptus oil bulk',
+    'hill-region lemongrass oil',
+    'private label essential oils India',
+    'phytosanitary certified essential oils',
+    'export grade essential oil packaging',
+    'Periyakulam essential oils',
+    'Theni District oil exporter',
+    'essential oil export documents India',
     'essential oils exporter India',
     'lemongrass oil supplier',
     'eucalyptus oil exporter',
@@ -200,8 +243,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
       >
         <div id="google_translate_element" style={{ display: 'none' }}></div>
-        <style dangerouslySetInnerHTML={{
-          __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
             iframe.goog-te-banner-frame { display: none !important; }
             .goog-te-banner-frame.skiptranslate { display: none !important; }
             body { top: 0px !important; margin-top: 0px !important; }
@@ -215,8 +259,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             .VIpgJd-Zvi9ab-OR9Zq-aZ2w3d { display: none !important; }
             .skiptranslate { display: none !important; }
             .goog-te-spinner-pos { display: none !important; }
-          `
-        }} />
+          `,
+          }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

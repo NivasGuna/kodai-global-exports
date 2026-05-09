@@ -158,10 +158,10 @@ export default function LanguageSwitcher() {
       .split('; ')
       .find((row) => row.startsWith('googtrans='))
       ?.split('=')[1];
-    
+
     if (cookieValue) {
       const lang = cookieValue.split('/').pop();
-      if (lang && languages.some(l => l.code === lang)) {
+      if (lang && languages.some((l) => l.code === lang)) {
         setCurrentLanguage(lang);
       }
     }
@@ -184,35 +184,45 @@ export default function LanguageSwitcher() {
   };
 
   const changeLanguage = (langCode: string) => {
-    const cookieDomain = window.location.hostname === 'localhost' ? '' : `domain=.${window.location.hostname.split('.').slice(-2).join('.')};`;
+    const cookieDomain =
+      window.location.hostname === 'localhost'
+        ? ''
+        : `domain=.${window.location.hostname.split('.').slice(-2).join('.')};`;
     /* eslint-disable react-hooks/immutability */
     document.cookie = `googtrans=/en/${langCode}; path=/; ${cookieDomain}`;
     document.cookie = `googtrans=/en/${langCode}; path=/;`;
     /* eslint-enable react-hooks/immutability */
-    
+
     setCurrentLanguage(langCode);
     window.location.reload();
   };
 
-  const filteredLanguages = languages.filter(lang => 
-    lang.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredLanguages = languages.filter((lang) =>
+    lang.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   return (
-    <Menubar 
+    <Menubar
       value={activeMenu}
       onValueChange={setActiveMenu}
       className="h-auto rounded-full border-0 bg-transparent p-0 shadow-none"
     >
       <MenubarMenu value="languages">
-        <MenubarTrigger 
+        <MenubarTrigger
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="group relative flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-2.5 py-2 text-[12px] font-semibold text-white transition-all duration-300 hover:bg-white/10 sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-[13px] outline-none cursor-pointer"
         >
-          <Globe size={18} strokeWidth={1.5} className="text-white group-hover:text-white/70 transition-colors" />
+          <Globe
+            size={18}
+            strokeWidth={1.5}
+            className="text-white group-hover:text-white/70 transition-colors"
+          />
           <span className="tracking-wide">Languages</span>
-          <ChevronDown size={12} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+          <ChevronDown
+            size={12}
+            className="opacity-40 group-hover:opacity-100 transition-opacity"
+          />
         </MenubarTrigger>
         <MenubarContent
           onMouseEnter={handleMouseEnter}
@@ -247,7 +257,12 @@ export default function LanguageSwitcher() {
                   className="flex items-center justify-between cursor-pointer rounded-xl px-4 py-3 text-sm font-medium text-white/65 outline-none hover:text-white focus:bg-white/8 focus:text-white"
                 >
                   <div className="flex items-center gap-2">
-                    <Globe size={14} className={currentLanguage === lang.code ? 'text-kodai-green' : 'text-white/40'} />
+                    <Globe
+                      size={14}
+                      className={
+                        currentLanguage === lang.code ? 'text-kodai-green' : 'text-white/40'
+                      }
+                    />
                     <span>{lang.name}</span>
                   </div>
                   {currentLanguage === lang.code && (
@@ -256,9 +271,7 @@ export default function LanguageSwitcher() {
                 </MenubarItem>
               ))
             ) : (
-              <div className="px-4 py-3 text-xs text-white/40 text-center">
-                No languages found
-              </div>
+              <div className="px-4 py-3 text-xs text-white/40 text-center">No languages found</div>
             )}
           </div>
         </MenubarContent>

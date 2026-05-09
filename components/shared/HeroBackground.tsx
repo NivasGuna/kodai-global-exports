@@ -7,6 +7,7 @@ interface HeroBackgroundProps {
   src: string;
   alt: string;
   priority?: boolean;
+  eager?: boolean;
   className?: string;
   imageClassName?: string;
   blur?: boolean;
@@ -16,27 +17,25 @@ export const HeroBackground = ({
   src,
   alt,
   priority = true,
+  eager = false,
   className,
   imageClassName,
   blur = false,
 }: HeroBackgroundProps) => {
+  const shouldLoadEagerly = priority || eager;
+
   return (
-    <div
-      className={cn(
-        'absolute inset-0 -z-10 overflow-hidden bg-[#10261a]',
-        className,
-      )}
-    >
+    <div className={cn('absolute inset-0 z-0 overflow-hidden bg-[#10261a]', className)}>
       <Image
         src={src}
         alt={alt}
         fill
         sizes="100vw"
-        priority={priority}
+        {...(priority ? { preload: true } : { loading: shouldLoadEagerly ? 'eager' : 'lazy' })}
         decoding="async"
-        quality={70}
+        quality={75}
         className={cn(
-          'object-cover object-center',
+          'object-cover object-center [backface-visibility:hidden] [transform:translateZ(0)]',
           blur ? 'blur-[4px] scale-[1.05]' : 'blur-0 scale-100',
           imageClassName,
         )}

@@ -34,35 +34,42 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
   const { api, setApi, current } = useCarousel(4000);
 
   return (
-    <section className="relative isolate h-screen min-h-screen overflow-hidden">
+    <section className="relative isolate h-screen min-h-screen overflow-hidden bg-[#10261a]">
       <Carousel setApi={setApi} className="h-screen w-full" opts={{ loop: true, duration: 45 }}>
         <CarouselContent className="h-screen -ml-0">
           {slides.map((slide, index) => (
-            <CarouselItem key={index} className="relative h-screen pl-0">
+            <CarouselItem
+              key={index}
+              className="relative isolate h-screen overflow-hidden pl-0 [transform:translateZ(0)]"
+            >
               <HeroBackground
                 src={slide.imageSrc}
                 alt={slide.imageAlt}
                 priority={index === 0}
+                eager
                 imageClassName="object-[85%_center] sm:object-[75%_center] lg:object-center"
               />
 
               <div className="relative z-10 mx-auto flex h-full max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
-                  animate={{ 
-                    opacity: current === index ? 1 : 0, 
+                  animate={{
+                    opacity: current === index ? 1 : 0,
                     x: current === index ? 0 : 30,
-                    visibility: current === index ? 'visible' : 'hidden'
+                    visibility: current === index ? 'visible' : 'hidden',
                   }}
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                   className={cn(
-                    "w-full sm:w-[80%] md:w-[60%] lg:w-[50%]",
-                    current !== index && "pointer-events-none absolute"
+                    'w-full sm:w-[80%] md:w-[60%] lg:w-[50%]',
+                    current !== index && 'pointer-events-none absolute',
                   )}
                 >
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: current === index ? 1 : 0, scale: current === index ? 1 : 0.9 }}
+                    animate={{
+                      opacity: current === index ? 1 : 0,
+                      scale: current === index ? 1 : 0.9,
+                    }}
                     transition={{ delay: 0.2, duration: 0.5 }}
                   >
                     <HeroBadge>{slide.badge}</HeroBadge>
@@ -112,7 +119,10 @@ export function HeroCarousel({ slides, highlights }: HeroCarouselProps) {
                   {slide.cta && (
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: current === index ? 1 : 0, y: current === index ? 0 : 20 }}
+                      animate={{
+                        opacity: current === index ? 1 : 0,
+                        y: current === index ? 0 : 20,
+                      }}
                       transition={{ delay: 0.6, duration: 0.7 }}
                       className="mt-8 sm:mt-12"
                     >
