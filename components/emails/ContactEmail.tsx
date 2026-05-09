@@ -25,7 +25,7 @@ export const ContactEmail = ({ name, email, country, message }: ContactEmailProp
     <Body style={main}>
       <Container style={container}>
         <Section style={header}>
-          <Heading style={h1}>New Contact Form Submission</Heading>
+          <Heading style={h1}>New Export Inquiry</Heading>
         </Section>
         <Section style={content}>
           <Text style={text}>

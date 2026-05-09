@@ -13,12 +13,13 @@ export async function sendContactEmail(formData: {
 }) {
   try {
     const { name, email, country, message } = formData;
-    const defaultSubject = `New Inquiry from ${name} (${country})`;
+    const defaultSubject = `New Business Inquiry: ${name} (${country})`;
 
     const { data, error } = await resend.emails.send({
       from: 'Kodai Global Exports <onboarding@resend.dev>', // Update this with your verified domain in Resend
       to: ['nivasguna26@gmail.com'],
       subject: defaultSubject,
+      replyTo: email,
       react: <ContactEmail name={name} email={email} country={country} message={message} />,
     });
 

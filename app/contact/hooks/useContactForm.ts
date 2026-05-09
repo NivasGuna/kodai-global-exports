@@ -69,9 +69,7 @@ export function useContactForm() {
   };
 
   // Map and Address Logic
-  const address =
-    contactContent.info.items.find((item) => item.type === 'address')?.value ??
-    'Kodai Global Exports, Periyakulam, Theni District-625601, Tamilnadu, India.';
+  const address = 'S New St, Periyakulam, Tamil Nadu 625601, India.';
 
   const mapQuery = encodeURIComponent(address.replace(/\n/g, ', '));
   const mapEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
