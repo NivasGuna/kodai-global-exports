@@ -37,7 +37,7 @@ export default function ContactPage() {
   return (
     <main className="pb-24">
       <section className="relative isolate min-h-screen overflow-hidden">
-        <HeroBackground src="/images/contact-hero-banner.png" alt="Contact Us Banner" />
+        <HeroBackground src="/images/contact-hero-banner.jpg" alt="Contact Us Banner" />
 
         <div className="relative z-10 mx-auto flex min-h-screen max-w-[85rem] flex-col justify-center items-start text-left px-4 pt-32 pb-16 sm:pt-40 sm:pb-32 sm:px-6 md:px-10 lg:pt-48 lg:pb-24">
           <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[50%]">
