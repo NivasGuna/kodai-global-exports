@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Settings, Check, Globe } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Check, Globe, ChevronDown } from 'lucide-react';
 import {
   Menubar,
   MenubarMenu,
@@ -150,9 +150,10 @@ const languages = [
 export default function LanguageSwitcher() {
   const [currentLanguage, setCurrentLanguage] = useState('en');
   const [searchQuery, setSearchQuery] = useState('');
+  const [activeMenu, setActiveMenu] = useState<string | undefined>(undefined);
+  const menuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Try to find the current language from the cookie
     const cookieValue = document.cookie
       .split('; ')
       .find((row) => row.startsWith('googtrans='))
@@ -166,11 +167,28 @@ export default function LanguageSwitcher() {
     }
   }, []);
 
+  const handleMouseEnter = () => {
+    if (menuTimeoutRef.current) {
+      clearTimeout(menuTimeoutRef.current);
+      menuTimeoutRef.current = null;
+    }
+    setActiveMenu('languages');
+  };
+
+  const handleMouseLeave = () => {
+    if (menuTimeoutRef.current) clearTimeout(menuTimeoutRef.current);
+    menuTimeoutRef.current = setTimeout(() => {
+      setActiveMenu(undefined);
+      menuTimeoutRef.current = null;
+    }, 150);
+  };
+
   const changeLanguage = (langCode: string) => {
-    // Set the cookie for Google Translate
     const cookieDomain = window.location.hostname === 'localhost' ? '' : `domain=.${window.location.hostname.split('.').slice(-2).join('.')};`;
+    /* eslint-disable react-hooks/immutability */
     document.cookie = `googtrans=/en/${langCode}; path=/; ${cookieDomain}`;
     document.cookie = `googtrans=/en/${langCode}; path=/;`;
+    /* eslint-enable react-hooks/immutability */
     
     setCurrentLanguage(langCode);
     window.location.reload();
@@ -181,12 +199,24 @@ export default function LanguageSwitcher() {
   );
 
   return (
-    <Menubar className="h-auto rounded-full border-0 bg-transparent p-0 shadow-none">
-      <MenubarMenu>
-        <MenubarTrigger className="group relative rounded-full px-3 py-2 text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white outline-none cursor-pointer">
-          <Settings size={20} className="transition-transform duration-500 group-hover:rotate-90" />
+    <Menubar 
+      value={activeMenu}
+      onValueChange={setActiveMenu}
+      className="h-auto rounded-full border-0 bg-transparent p-0 shadow-none"
+    >
+      <MenubarMenu value="languages">
+        <MenubarTrigger 
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className="group relative flex flex-shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-2.5 py-2 text-[12px] font-semibold text-white transition-all duration-300 hover:bg-white/10 sm:gap-2.5 sm:px-4 sm:py-2.5 sm:text-[13px] outline-none cursor-pointer"
+        >
+          <Globe size={18} strokeWidth={1.5} className="text-white group-hover:text-white/70 transition-colors" />
+          <span className="tracking-wide">Languages</span>
+          <ChevronDown size={12} className="opacity-40 group-hover:opacity-100 transition-opacity" />
         </MenubarTrigger>
         <MenubarContent
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           align="end"
           sideOffset={8}
           className="w-56 rounded-2xl border border-white/[0.08] bg-[#0f1623]/98 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.40)] backdrop-blur-xl"

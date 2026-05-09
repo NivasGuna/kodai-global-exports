@@ -24,7 +24,6 @@ export default function Footer() {
     <footer className="bg-kodai-dark text-white pt-20 pb-10 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-          {/* Brand Section */}
           <div className="space-y-6">
             <Link
               href="/"
@@ -56,7 +55,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Dynamic Sections */}
           {footerData.sections.map((section, idx) => (
             <div key={idx} className="space-y-6">
               <h4 className="text-lg font-bold font-playfair">{section.title}</h4>
@@ -104,7 +102,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-1.5 text-gray-500 text-xs">
             <span>Copyright</span>

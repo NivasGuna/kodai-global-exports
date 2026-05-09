@@ -93,7 +93,7 @@ export default function ContactPage() {
                         <p className="text-xs font-bold uppercase tracking-[0.24em] text-gray-400">
                           {item.label}
                         </p>
-                        <p className="mt-2 whitespace-pre-line text-base font-medium leading-7 text-kodai-dark">
+                        <p className="mt-2 whitespace-pre-line break-words text-base font-medium leading-7 text-kodai-dark">
                           {item.value}
                         </p>
                       </div>

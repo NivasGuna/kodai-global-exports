@@ -17,7 +17,6 @@ import {
 import navbarContent from './navbar.json';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
-/* ─── Reusable: Single nav link (desktop) ─── */
 interface NavLinkProps {
   href: string;
   label: string;
@@ -26,7 +25,7 @@ interface NavLinkProps {
 }
 
 const linkBase =
-  'relative rounded-full px-5 py-2.5 text-[13px] font-semibold transition-all duration-300';
+  'relative rounded-full px-3 lg:px-5 py-2.5 text-[13px] font-semibold transition-all duration-300';
 const linkActive = 'bg-kodai-green text-white shadow-[0_4px_16px_rgba(45,122,79,0.40)]';
 const linkIdle = 'text-white/80 hover:bg-white/10 hover:text-white';
 
@@ -43,7 +42,6 @@ function DesktopNavLink({ href, label, isActive, onClick }: NavLinkProps) {
   );
 }
 
-/* ─── Reusable: Single nav link (mobile) ─── */
 function MobileNavLink({ href, label, isActive, onClick }: NavLinkProps) {
   return (
     <Link
@@ -223,14 +221,14 @@ export default function Navbar() {
           </div>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-1.5 md:hidden">
           <LanguageSwitcher />
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
+            className="inline-flex h-10 w-10 flex-none flex-shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
           >
             {menuOpen ? <X size={19} /> : <Menu size={19} />}
           </button>

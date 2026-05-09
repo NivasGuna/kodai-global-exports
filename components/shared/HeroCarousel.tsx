@@ -6,7 +6,7 @@ import { HeroBackground } from './HeroBackground';
 import { HeroBadge } from './HeroBadge';
 import { FormattedText } from './FormattedText';
 import { cn } from '@/lib/utils';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { CheckCircle2, FileCheck2, ShieldCheck, LucideIcon, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useCarousel } from './hooks/useCarousel';

@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
-import { Home, ArrowLeft, Search } from 'lucide-react';
+import { Home, Search } from 'lucide-react';
 import { FadeIn } from '@/components/shared/FadeIn';
 
 export default function NotFound() {
   return (
     <main className="relative isolate min-h-[80vh] flex flex-col items-center justify-center px-6 py-24 sm:py-32 lg:px-8">
-      {/* Background Decorative Elements */}
+
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-[50%] top-0 h-[64rem] w-[128rem] -translate-x-[50%] [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(45,122,79,0.05)_0%,transparent_70%)]" />
@@ -21,7 +21,7 @@ export default function NotFound() {
           Page not found
         </h1>
         <p className="mt-6 text-base leading-7 text-gray-600 max-w-lg mx-auto">
-          Sorry, we couldn't find the page you're looking for. It might have been moved, 
+          Sorry, we couldn&apos;t find the page you&apos;re looking for. It might have been moved, 
           deleted, or the link might be broken.
         </p>
         

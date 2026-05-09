@@ -15,6 +15,17 @@ export function useNavbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   const handleMouseEnter = (menu: string) => {
     if (menuTimeoutRef.current) {
       clearTimeout(menuTimeoutRef.current);

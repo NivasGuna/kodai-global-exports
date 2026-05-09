@@ -139,29 +139,31 @@ export default function Page() {
                   <Star size={96} className="fill-kodai-green text-kodai-green" />
                 </div>
 
-                <div className="relative z-10 flex items-center gap-4">
-                  <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green font-bold transition-all duration-300 group-hover:bg-kodai-green group-hover:text-white">
-                    {review.avatar}
+                <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-kodai-green/10 text-kodai-green font-bold transition-all duration-300 group-hover:bg-kodai-green group-hover:text-white">
+                      {review.avatar}
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-lg font-bold text-kodai-dark leading-tight">{review.name}</h3>
+                      <p className="mt-1 text-xs font-medium uppercase tracking-[0.22em] text-gray-400 leading-relaxed">
+                        {review.role}
+                      </p>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="text-lg font-bold text-kodai-dark">{review.name}</h3>
-                    <p className="text-xs font-medium uppercase tracking-[0.22em] text-gray-400">
-                      {review.role}
-                    </p>
-                  </div>
-                  <div className="ml-auto flex gap-1">
+                  <div className="flex flex-wrap gap-1 sm:ml-auto">
                     {[...Array(5)].map((_, i) => {
                       const ratingValue = i + 1;
                       if (review.rating >= ratingValue) {
                         return (
-                          <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                          <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
                         );
                       } else if (review.rating >= ratingValue - 0.5) {
                         return (
-                          <StarHalf key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                          <StarHalf key={i} size={16} className="fill-yellow-400 text-yellow-400" />
                         );
                       } else {
-                        return <Star key={i} size={18} className="text-gray-200" />;
+                        return <Star key={i} size={16} className="text-gray-200" />;
                       }
                     })}
                   </div>
