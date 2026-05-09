@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Toaster } from '@/components/ui/sonner';
+import Script from 'next/script';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -125,6 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         'h-full',
         'antialiased',
@@ -135,11 +137,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
     >
       <head>
-        <script
+        <Script
+          id="handle-lang-attribute"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const cookieValue = document.cookie
+                  .split('; ')
+                  .find((row) => row.startsWith('googtrans='))
+                  ?.split('=')[1];
+                if (cookieValue) {
+                  const lang = cookieValue.split('/').pop();
+                  if (lang) {
+                    document.documentElement.lang = lang;
+                  }
+                }
+              })();
+            `,
+          }}
+        />
+        <Script
+          id="json-ld"
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
+        <Script
+          id="disable-copy"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               document.addEventListener('contextmenu', event => event.preventDefault());
@@ -148,11 +174,49 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
+        <Script
+          id="google-translate-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                  pageLanguage: 'en',
+                  layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                  autoDisplay: false
+                }, 'google_translate_element');
+              }
+            `,
+          }}
+        />
+        <Script
+          id="google-translate-script"
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </head>
       <body
         className="min-h-screen flex flex-col font-sans text-kodai-dark"
         suppressHydrationWarning
       >
+        <div id="google_translate_element" style={{ display: 'none' }}></div>
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            iframe.goog-te-banner-frame { display: none !important; }
+            .goog-te-banner-frame.skiptranslate { display: none !important; }
+            body { top: 0px !important; margin-top: 0px !important; }
+            html { top: 0px !important; }
+            .goog-te-gadget-icon { display: none !important; }
+            .goog-te-gadget-simple { background-color: transparent !important; border: none !important; }
+            .goog-tooltip { display: none !important; }
+            .goog-tooltip:hover { display: none !important; }
+            .goog-text-highlight { background-color: transparent !important; border: none !important; box-shadow: none !important; }
+            #goog-gt-tt { display: none !important; visibility: hidden !important; }
+            .VIpgJd-Zvi9ab-OR9Zq-aZ2w3d { display: none !important; }
+            .skiptranslate { display: none !important; }
+            .goog-te-spinner-pos { display: none !important; }
+          `
+        }} />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

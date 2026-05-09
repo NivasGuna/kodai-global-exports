@@ -15,6 +15,7 @@ import {
   MenubarSubContent,
 } from '@/components/ui/menubar';
 import navbarContent from './navbar.json';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 /* ─── Reusable: Single nav link (desktop) ─── */
 interface NavLinkProps {
@@ -216,17 +217,24 @@ export default function Navbar() {
           {desktopAfter.map(({ label, href }) => (
             <DesktopNavLink key={href} href={href} label={label} isActive={isActiveLink(href)} />
           ))}
+
+          <div className="ml-2 pl-2 border-l border-white/10">
+            <LanguageSwitcher />
+          </div>
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-expanded={menuOpen}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20 md:hidden"
-        >
-          {menuOpen ? <X size={19} /> : <Menu size={19} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/20"
+          >
+            {menuOpen ? <X size={19} /> : <Menu size={19} />}
+          </button>
+        </div>
       </div>
 
       {/* ─── Mobile menu ─── */}
