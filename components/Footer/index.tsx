@@ -4,7 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi';
 import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { Copyright, Leaf } from 'lucide-react';
+import { Copyright } from 'lucide-react';
+import Image from 'next/image';
 import footerData from './footer.json';
 
 const iconMap: Record<string, React.ElementType> = {
@@ -25,14 +26,30 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Brand Section */}
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-kodai-green shadow-sm transition-transform duration-300 group-hover:scale-110">
-                <Leaf size={24} />
+            <Link
+              href="/"
+              className="group flex items-center gap-3.5 transition-opacity duration-300 hover:opacity-90"
+            >
+              <div className="relative flex h-11 w-11 flex-none items-center justify-center  bg-white/80 p-3 rounded-full  shadow-lg transition-all duration-500 group-hover:bg-white/15 group-hover:ring-white/30 sm:h-18 sm:w-18">
+                <Image
+                  src="/images/logo.png"
+                  alt="Kodai Global logo"
+                  width={54}
+                  height={54}
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
-              <span className="text-2xl font-bold font-playfair tracking-wider uppercase">
-                KODAI <span className="text-kodai-green italic font-medium">GLOBAL</span>{' '}
-                <span className="text-white opacity-90">EXPORTS</span>
-              </span>
+              <div className="flex flex-col leading-none">
+                <span className="font-playfair text-[20px] font-bold tracking-tight text-white sm:text-[24px]">
+                  KODAI
+                </span>
+                <span
+                  className="mt-1 font-sans text-[9px] font-bold tracking-[0.35em] text-white/90 uppercase sm:text-[10px]"
+                  style={{ textShadow: '0 1px 8px rgba(45,122,79,0.6)' }}
+                >
+                  GLOBAL EXPORTS
+                </span>
+              </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               {footerData.branding.description}
