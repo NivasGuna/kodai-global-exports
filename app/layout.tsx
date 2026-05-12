@@ -159,8 +159,8 @@ const jsonLd = {
     telephone: '+91-9677447233',
     contactType: 'sales',
     email: 'kge@kodaiglobalexports.com',
-    areaServed: ['IN', 'DE', 'FR', 'KW', 'SA', 'AE', 'BD', 'ZA'],
-    availableLanguage: ['English', 'Tamil'],
+    areaServed: 'Worldwide',
+    availableLanguage: ['English', 'Tamil', 'Multilingual Support'],
   },
   sameAs: [],
 };
