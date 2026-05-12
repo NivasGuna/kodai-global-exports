@@ -1,9 +1,18 @@
 'use server';
 
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
+import { render } from '@react-email/render';
 import { ContactEmail } from '@/components/emails/ContactEmail';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: true, // true for 465, false for 587
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
 export async function sendContactEmail(formData: {
   name: string;
@@ -15,20 +24,21 @@ export async function sendContactEmail(formData: {
     const { name, email, country, message } = formData;
     const defaultSubject = `New Business Inquiry: ${name} (${country})`;
 
-    const { data, error } = await resend.emails.send({
-      from: 'Kodai Global Exports <onboarding@resend.dev>', // Update this with your verified domain in Resend
-      to: ['nivasguna26@gmail.com'],
+    // Render React Email component to HTML string
+    const emailHtml = await render(
+      <ContactEmail name={name} email={email} country={country} message={message} />
+    );
+
+    const info = await transporter.sendMail({
+      from: `"Kodai Global Exports" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       subject: defaultSubject,
       replyTo: email,
-      react: <ContactEmail name={name} email={email} country={country} message={message} />,
+      html: emailHtml,
     });
 
-    if (error) {
-      console.error('Resend Error:', error);
-      return { success: false, error: error.message };
-    }
-
-    return { success: true, data };
+    console.log('Message sent: %s', info.messageId);
+    return { success: true, data: info };
   } catch (err: unknown) {
     console.error('Server Action Error:', err);
     return { success: false, error: err instanceof Error ? err.message : 'Failed to send email' };
